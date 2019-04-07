@@ -1,0 +1,91 @@
+<!--login modal-->
+<div>
+  <div>
+    <ul class="nav nav-tabs bg-light" role="tab-list">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#renter-login">Login as a Owner</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#owner-login">Login as a Register</a>
+      </li>
+    </ul>
+    <br /><br><br><br>
+    <div class="tab-content">
+      <!--Renter Login-->
+      <div id="renter-login" class="container tab-pane active">
+
+        <div class="col-md-6  offset-sm-2">
+          <form [formGroup]="userForm" novalidate (submit)="saveData()">
+
+            <div>
+              <input type="text" formControlName="email" name="email" ng-model="email" placeholder="Enter your Email Id ..."
+                class='form-control input' />
+              <span *ngIf="userForm.controls['email'].errors">
+                <span class='text-danger' *ngIf="userForm.controls['email'].errors.required">
+                  * Email is Required
+                </span>
+                <span class='text-danger' *ngIf="userForm.controls['email'].errors.email">
+                  Please specify your register Email
+                </span>
+              </span>
+            </div><br>
+
+
+
+
+
+            <div>
+              <input type="password" formControlName="password" name="password" ng-model="password" placeholder="Enter your Password ..."
+                class='form-control input' />
+              <span *ngIf="userForm.status =='INVALID' ">
+                <span class='text-danger' *ngIf="userForm.controls['password'].errors">
+                  <span *ngIf="userForm.controls['password'].errors.required">
+                    * Please create a Password
+                  </span>
+                </span>
+              </span>
+            </div><br>
+
+            <input type="submit" name="save" value="LOGIN" class='btn btn-primary button' />
+          </form>
+        </div>
+      </div>
+
+      <!--Owner login-->
+      <div id="owner-login" class="container tab-pane ">
+
+        <div class="col-md-6 offset-sm-2">
+          <form [formGroup]="userForm" novalidate (submit)="save()">
+
+            <div>
+              <input type="text" formControlName="email" name="email"
+               placeholder="Owner Email Id ..." class='form-control input ' />
+              <span *ngIf="userForm.controls['email'].errors">
+                <span class='text-danger' *ngIf="userForm.controls['email'].errors.required">
+                  * Email is Required
+                </span>
+                <span class='text-danger' *ngIf="userForm.controls['email'].errors.email">
+                  Please specify your register Email
+                </span>
+              </span>
+            </div><br>
+
+
+
+            <div>
+              <input type="password" formControlName="password" name="password" placeholder="Enter your Password ..."
+                class='form-control input' />
+              <span *ngIf="userForm.status =='INVALID' ">
+                <span class='text-danger' *ngIf="userForm.controls['password'].errors">
+                  <span *ngIf="userForm.controls['password'].errors.required">
+                    * Please enter Password
+                  </span>
+                </span>
+              </span>
+            </div><br>
+
+            <input type="submit" name="save" value="LOGIN" class='btn btn-primary button' />
+          </form>
+        </div>
+      </div>
+    </div>
