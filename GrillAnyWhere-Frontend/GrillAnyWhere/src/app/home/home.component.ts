@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery'
+import { GrillerService } from "../griller.service";
+import { ActivatedRoute,Router } from "@angular/router";
 //import {  } from "../user.service";
 
 @Component({
@@ -8,12 +10,46 @@ import * as $ from 'jquery'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-   
-  constructor() { 
+  private grillers:any[]
+  grillName;
+  location;
+  grillerType;
+  price;
+  grillerDescriptions;
+  flag;
+  constructor(private service:GrillerService,private router: Router) { 
    
   }
 
   ngOnInit() {
+    $(document).ready(() => {
+      $('#loginId').click(()=>{
+        $('#popLogin').hide();
+        //this.router.navigate(['./renter-dashboard']);
+       // location.reload();
+      });
+    });
+
+
+    $(document).ready(function(){
+  
+      $('#searchbar-icon').click(function(){
+        $('#searchbar-input').animate({width: 'toggle'});
+        $("#searchbar-icon").toggle();
+        $("#searchbar-cross").toggle(500);
+      });
+      
+      $('#searchbar-cross').click(function(){
+        $('#searchbar-input').animate({width: 'toggle'});
+        $("#searchbar-cross").toggle();
+        $("#searchbar-icon").toggle(500);
+      });
+      
+     
+    });
+
+    this.onloadFun();
+
     $('#year').text(new Date().getFullYear());
 
     // Configure Slider
@@ -44,4 +80,34 @@ export class HomeComponent implements OnInit {
   }
   
 
+  onloadFun(){
+    this.service.getUser(success=>{
+         this.grillers=success;
+         console.log("in home "+this.grillers);
+    });
+  }
+
+  grillerInfo(grillName,price,grillerDescriptions,grillerType,location){
+    console.log("into grillerInfo"+grillName+","+price+","+grillerDescriptions+","+grillerType+","+location);
+
+    this.grillName=grillName;
+    this.location=location;
+    this.grillerType=grillerType;
+    this.grillerDescriptions=grillerDescriptions;
+    this.price=price;
+  }
+
+  rentFunc(){
+    console.log("into rent func");
+    this.setFlag();
+    window.location.reload();
+     this.router.navigate(['./login']);
+     
+  }
+
+  setFlag(){
+    console.log("into setFlag");
+    this.flag=1;
+    sessionStorage.setItem('flagMsg',this.flag);
+  }
 }

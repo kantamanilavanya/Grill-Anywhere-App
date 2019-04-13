@@ -12,6 +12,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ManualComponent } from './manual/manual.component';
 import { AutomaticComponent } from './automatic/automatic.component';
 
+import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
+
 //import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 //import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
 //import { NotFoundComponent } from './not-found/not-found.component';
@@ -29,6 +31,8 @@ import { AutomaticComponent } from './automatic/automatic.component';
     NavBarComponent,
     ManualComponent,
     AutomaticComponent,
+    
+    OwnerDashboardComponent
     //OwnerDashboardComponent
   ],
   imports: [

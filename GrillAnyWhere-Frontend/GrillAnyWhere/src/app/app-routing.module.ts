@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
 import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
+// import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
@@ -29,10 +29,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  {
-    path: 'renter-dashboard',
-    component: RenterDashboardComponent
-  },
+  // {
+  //   path: 'renter-dashboard',
+  //   component: RenterDashboardComponent
+  // },
   {
     path: 'owner-dashboard',
     component: OwnerDashboardComponent
@@ -49,4 +49,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponent=[HomeComponent,RenterDashboardComponent,OwnerDashboardComponent,NotFoundComponent,RegistrationComponent,LoginComponent ]
+export const routingComponent=[HomeComponent,OwnerDashboardComponent,NotFoundComponent,RegistrationComponent,LoginComponent ]

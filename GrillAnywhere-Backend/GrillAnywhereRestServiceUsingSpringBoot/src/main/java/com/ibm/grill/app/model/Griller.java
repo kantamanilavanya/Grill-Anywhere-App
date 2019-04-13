@@ -1,11 +1,14 @@
 package com.ibm.grill.app.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table
@@ -18,14 +21,43 @@ public class Griller {
 	private String grillerDescriptions;
 	private Double price;
 	private String location;
-
-	/*
-	 * @Lob private byte[] grillImage;
-	 */
-
+	
+	@Column(name="grill_image")
+	private byte[] grillerIcon;
+	
+	@Column(name="grillerFileName")
+	private String grillerFileName;
+	
+	
 	public int getGrillId() {
 		return grillId;
 	}
+
+	
+
+	public byte[] getGrillerIcon() {
+		return grillerIcon;
+	}
+
+
+
+	public void setGrillerIcon(byte[] grillerIcon) {
+		this.grillerIcon = grillerIcon;
+	}
+
+
+
+	public String getGrillerFileName() {
+		return grillerFileName;
+	}
+
+
+
+	public void setGrillerFileName(String grillerFileName) {
+		this.grillerFileName = grillerFileName;
+	}
+
+
 
 	public void setGrillId(int grillId) {
 		this.grillId = grillId;

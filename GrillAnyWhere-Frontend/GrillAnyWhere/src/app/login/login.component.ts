@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from "@angular/router";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoginService } from '../login.service';
+import { FLAGS } from '@angular/core/src/render3/interfaces/view';
 
 
 @Component({
@@ -15,11 +16,17 @@ export class LoginComponent implements OnInit {
   errorMessage:string
   private isSaved:boolean
   private users:any[]
-
+  flag;
+  msg;
+  
   constructor(private builder:FormBuilder,private router : Router) { 
   this.buildForm()
   }
   ngOnInit() {
+    this.flag=sessionStorage.getItem('flagMsg');
+    if(this.flag==1){
+      this.msg="Please Login before Rent .....";
+    }
   }
   buildForm() {
     this.userForm = this.builder.group({
@@ -41,8 +48,8 @@ export class LoginComponent implements OnInit {
     
     if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@07" ){
       
-      this.router.navigate(['./owner-dashboard']);
-      window.location.reload();
+      this.router.navigate(['./renter-dashboard']);
+     // window.location.reload();
     }else
     {
       alert("please provide valid data to login");
@@ -62,8 +69,8 @@ export class LoginComponent implements OnInit {
     if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@07" ){
       
       
-      this.router.navigate(['./renter-dashboard']);
-      window.location.reload();
+      this.router.navigate(['./owner-dashboard']);
+      //window.location.reload();
     }else
     {
       alert("please provide valid data to login")
