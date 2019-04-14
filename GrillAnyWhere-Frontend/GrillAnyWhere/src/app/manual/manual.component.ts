@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GrillerService } from "../griller.service";
 
 @Component({
   selector: 'app-manual',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manual.component.css']
 })
 export class ManualComponent implements OnInit {
-
-  constructor() { }
+private grillers:any[]
+  constructor(private service:GrillerService) { }
 
   ngOnInit() {
+    this.onloadFun()
+  }
+  onloadFun(){
+    this.service.getGrillerAutomatic(success=>{
+      this.grillers=success;
+    });
   }
 
 }

@@ -13,6 +13,7 @@ export class GrillerService {
 
   
    createUser(userObj:any,callback){
+    
      console.log(JSON.stringify(userObj));
     this.http
     .post(this._url,userObj).subscribe(response=>{
@@ -34,6 +35,24 @@ console.log('unable to process request')
      })
    }
 
+   getGrillerAutomatic(callback){
+    this.http.get(this._url+"/byGrillerType/AutomaticGriller").subscribe(data=>{
+callback(data)
+console.log(data)},error=>{
+
+console.log('unable to process request')
+
+    })
+  }
+  getGrillerManual(callback){
+    this.http.get(this._url+"/byGrillerType/ManualGriller").subscribe(data=>{
+callback(data)
+console.log(data)},error=>{
+
+console.log('unable to process request')
+
+    })
+  }
 
 
   buildAndCreateUser(user:any,callback){
