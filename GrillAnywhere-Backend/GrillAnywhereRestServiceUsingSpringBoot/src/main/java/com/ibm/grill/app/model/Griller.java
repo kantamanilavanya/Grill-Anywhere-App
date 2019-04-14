@@ -22,7 +22,6 @@ public class Griller {
 	/*
 	 * @Lob private byte[] grillImage;
 	 */
-
 	public int getGrillId() {
 		return grillId;
 	}
@@ -70,11 +69,11 @@ public class Griller {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	/*
 	 * public byte[] getGrillImage() { return grillImage; }
 	 * 
 	 * public void setGrillImage(byte[] grillImage) { this.grillImage = grillImage;
 	 * }
 	 */
-
 }
