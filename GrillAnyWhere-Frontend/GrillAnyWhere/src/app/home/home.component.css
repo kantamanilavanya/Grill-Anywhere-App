@@ -13,6 +13,10 @@ body {
     overflow-x: hidden;
   }
   
+  #dropDown-input{
+    border-radius: 2px;
+    background-color: darkgoldenrod;
+  }
   .navbar .nav-link {
     font-size: 14px;
     text-transform: uppercase;

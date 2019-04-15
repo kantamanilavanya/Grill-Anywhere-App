@@ -13,6 +13,8 @@ import { ManualComponent } from './manual/manual.component';
 import { AutomaticComponent } from './automatic/automatic.component';
 
 import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
+import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
+import { FilterComponent } from './filter/filter.component';
 
 //import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 //import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
@@ -32,7 +34,11 @@ import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.compo
     ManualComponent,
     AutomaticComponent,
     
-    OwnerDashboardComponent
+    OwnerDashboardComponent,
+    
+    RenterDashboardComponent,
+    
+    FilterComponent
     //OwnerDashboardComponent
   ],
   imports: [

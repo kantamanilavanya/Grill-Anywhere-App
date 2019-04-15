@@ -25,6 +25,12 @@
       
       <li class="list-group-item bg-dark">
 
+        <a class="nav-link" href="#" routerLink="/filter">Filter-grillers</a>
+     
+  </li>
+
+      <li class="list-group-item bg-dark">
+
         <a href="#" class="">Sign Out</a>
 
       </li>
@@ -82,7 +88,7 @@
   <div *ngIf="errorMessage" class='error text-primary'>
       {{errorMessage}}
     </div>
-    <form [formGroup]="userForm">
+    <form [formGroup]="userForm" novalidate (submit)="save()">
     
                 
             <br/>
@@ -111,9 +117,11 @@
               <span>
                 <select class='form-control ' formControlName="grillerType">
                   <option>---Select Type of Griller</option>
-                  <option value="electric-griller">Manual Griller</option>
-                  <option value="charcoal-griller">Automatic Griller</option>
-                  <option value="gas-griller">Gas Griller</option>
+                  <option value="Manual">Manual Griller</option>
+                  <option value="Automatic">Automatic Griller</option>
+                  <option value="gasgriller">Gas Griller</option>
+                  <option value="electricgriller">Electric Griller</option>
+                  <option value="charcoalgriller">Charcoal Griller</option>
                 </select>
               </span>
               <span *ngIf="userForm.status =='INVALID' ">
@@ -153,15 +161,15 @@
               </span>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="file">Upload Image</label>
               <input type="file" class="form-control" accept="image/*" (change)="onSelectFile($event)" >
-            </div>
+            </div> -->
                 <br/>
                 <div class="modal-footer" >
                   <div class="col-sm-10">
                     <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>&nbsp;
-                    <button type="submit" class='btn btn-primary btn-lg' (click)="save(userForm)">SAVE</button></div>
+                    <button type="submit" class='btn btn-primary btn-lg' >SAVE</button></div>
                   </div>
                   </form>
             </div>

@@ -68,60 +68,94 @@ public class GrillerController {
 		binder.setValidator(validator);
 	}
 
-	@CrossOrigin(origins = "*")
-	@PostMapping
-	public ResponseEntity<String> addGriller(@RequestParam("file") MultipartFile file,@RequestParam("grill") String grill) throws JsonParseException, JsonMappingException, IOException{
-		Griller griller=new ObjectMapper().readValue(grill, Griller.class);
-		griller.setGrillerIcon(file.getBytes());
-		griller.setGrillerFileName(file.getOriginalFilename());
-		grillService.add(griller);
-		return new ResponseEntity<String>("added successfull",HttpStatus.OK);
-	}
-	
-	
 //	@CrossOrigin(origins = "*")
-//	//@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//	 @PostMapping
-//	public HttpEntity<? extends Object> addGriller(@RequestBody Griller griller, WebRequest request,
-//			HttpSession session, BindingResult bindingResult)
-//			throws LoginException, ValidationException, URISyntaxException, IOException {
-//			
-//			
-//			
-//		
-//		/*
-//		 * MultipartFile originalPic =griller.getGrillImage(); byte[] ImageInByte =
-//		 * originalPic.getBytes();
-//		 */
-//
-//		validator.validate(griller, bindingResult);
-//
-//		if (bindingResult.hasErrors()) {
-//			throw new ValidationException(bindingResult);
-//		}
-//
+//	@PostMapping
+//	public ResponseEntity<String> addGriller(@RequestParam("file") MultipartFile file,@RequestParam("grill") String grill) throws JsonParseException, JsonMappingException, IOException{
+//		Griller griller=new ObjectMapper().readValue(grill, Griller.class);
+//		griller.setGrillerIcon(file.getBytes());
+//		griller.setGrillerFileName(file.getOriginalFilename());
 //		grillService.add(griller);
-//
-//		// return new ResponseEntity<String>(empId, HttpStatus.CREATED);
-//		URI locationUri = new URI("/SpringRESTEmployeeCRUDEx/griller/" + griller.getGrillId());
-//		return ResponseEntity.created(locationUri).build();
-////		return new ResponseEntity<Employee>(employee, HttpStatus.OK);		
+//		return new ResponseEntity<String>("added successfull",HttpStatus.OK);
 //	}
-//
+	
+	
+	@CrossOrigin(origins = "*")
+	//@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	 @PostMapping
+	public HttpEntity<? extends Object> addGriller(@RequestBody Griller griller, WebRequest request,
+			HttpSession session, BindingResult bindingResult)
+			throws LoginException, ValidationException, URISyntaxException, IOException {
+			
+			
+			
+		
+		/*
+		 * MultipartFile originalPic =griller.getGrillImage(); byte[] ImageInByte =
+		 * originalPic.getBytes();
+		 */
+
+		validator.validate(griller, bindingResult);
+
+		if (bindingResult.hasErrors()) {
+			throw new ValidationException(bindingResult);
+		}
+
+		grillService.add(griller);
+
+		// return new ResponseEntity<String>(empId, HttpStatus.CREATED);
+		URI locationUri = new URI("/SpringRESTEmployeeCRUDEx/griller/" + griller.getGrillId());
+		return ResponseEntity.created(locationUri).build();
+//		return new ResponseEntity<Employee>(employee, HttpStatus.OK);		
+	}
+
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public HttpEntity<List<Griller>> listGrillers(HttpSession session) {
 
 		return new ResponseEntity<List<Griller>>(grillService.list(), HttpStatus.OK);
 	}
-
+	
+	//daminee's part
 	@CrossOrigin(origins = "*")
-
 	@GetMapping("byID/{id}")
 	public HttpEntity<List<Griller>> getGriller(@PathVariable int id, HttpSession session) {
 
 		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.get(id), HttpStatus.OK);
 	}
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("/byGrillerType/{grillerType}")
+	public HttpEntity<List<Griller>> getGriller(@PathVariable String grillerType , HttpSession session) {
+
+		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.findByGrillerType(grillerType), HttpStatus.OK);
+	}
+	@CrossOrigin(origins = "*")
+	@GetMapping("/byGrillerLocation/{location}")
+	public HttpEntity<List<Griller>> getGrillerType(@PathVariable String location , HttpSession session) {
+
+		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.findByLocation(location), HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/byPrice/{price}")
+	public HttpEntity<List<Griller>> getPrice(@PathVariable Double price , HttpSession session) {
+
+		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.findByPrice(price), HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+//
+//	@CrossOrigin(origins = "*")
+//
+//	@GetMapping("byID/{id}")
+//	public HttpEntity<List<Griller>> getGriller(@PathVariable int id, HttpSession session) {
+//
+//		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.get(id), HttpStatus.OK);
+//	}
 
 	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")

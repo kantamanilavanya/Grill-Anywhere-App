@@ -46,6 +46,22 @@ public class GrillerService {
 	}
 	
 	
+	//daminee's part
+	public List<Griller> findByGrillerType(String grillType)
+	{
+		return employeeRepository.findByGrillerType(grillType);
+	}
+	
+	public List<Griller> findByLocation(String location)
+	{
+		return employeeRepository.findByLocation(location);
+	}
+	public List<Griller> findByPrice(double price)
+	{
+		return employeeRepository.findByPrice(price);
+	}
+	
+	
 	
 
 	

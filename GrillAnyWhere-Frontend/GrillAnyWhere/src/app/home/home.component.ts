@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery'
 import { GrillerService } from "../griller.service";
 import { ActivatedRoute,Router } from "@angular/router";
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 //import {  } from "../user.service";
 
 @Component({
@@ -17,6 +18,10 @@ export class HomeComponent implements OnInit {
   price;
   grillerDescriptions;
   flag;
+  byType;
+
+  private userForm:FormGroup
+  private user:any
   constructor(private service:GrillerService,private router: Router) { 
    
   }
@@ -109,5 +114,47 @@ export class HomeComponent implements OnInit {
     console.log("into setFlag");
     this.flag=1;
     sessionStorage.setItem('flagMsg',this.flag);
+  }
+
+
+  searchBarFilter(event){
+    //var text = document.getElementsByName("searchbar-input").value;
+    console.log("in searchBar: "+event);
+    this.byType=event;
+    this.user={
+      grillerType:this.byType
+      }
+      
+      if(1){
+        
+       this.service.findByGrillerType(this.user,success=>{
+         this.grillers=success;
+       });
+      }
+    }
+
+
+    dropDownFilter(event){
+      console.log("in dropDown: "+event);
+      if(event!='Choose City'){
+        this.user={
+          location:event
+          }
+          
+          if(1){
+            
+           this.service.findByLocation(this.user,success=>{
+             this.grillers=success;
+           });
+      }
+      }
+      else{
+        this.service.getUser(success=>{
+          this.grillers=success;
+          console.log("in home "+this.grillers);
+     });
+      
+      }
+      
   }
 }

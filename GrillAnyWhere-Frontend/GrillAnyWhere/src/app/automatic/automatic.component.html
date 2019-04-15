@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     
               <div >
                   <h1 class="h1">AUTOMATIC GRILLERS</h1><br>
@@ -54,4 +54,68 @@
                 </div>
               </div>
             </div> 
+         -->
+
+         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container">
+              <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+              <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                    <a href="index.html" class="nav-link">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="about.html" class="nav-link">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="services.html" class="nav-link">Services</a>
+                  </li>
+                
+                  <li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </li>
+                  <button type="button" class="btn btn-info" routerLink="/home" >
+                   SIGNOUT
+                  </button>
+                  <li>
+                    &nbsp;&nbsp;
+                  </li>
+                 
+                </ul>
+              </div>
+            </div>
+          </nav>
         
+          
+        
+          
+          <body class="container">
+        
+            <div id="menu" class="card-columns" >
+            <ul>
+              <div class="card-columns ">
+              <li *ngFor="let success of grillers">
+                  <div class="column">
+                      <div class="card" style="width: 18rem;height:28rem">
+                          <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap">
+                          <hr>
+                          <p class="card-text">{{success.grillName}}</p>
+                          <hr>
+                          <p>Starts From {{success.price}}$</p>
+                          <hr>
+                          <p>Type {{success.grillerType}}</p>
+                          <hr>
+                          <p>Location {{success.location}}</p>
+                        
+                      </div>
+                    </div>
+              </li>
+            </div>
+              </ul>
+            </div>
+          </body> 
+  
+  

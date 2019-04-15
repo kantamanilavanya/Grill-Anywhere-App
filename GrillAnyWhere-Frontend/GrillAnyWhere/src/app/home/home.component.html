@@ -1,42 +1,3 @@
-<!-- <div>
-  <img src="assets/image/icon3.png" style="width:1500px;height:500px;margin-left: 50px" />
-  <br/>
-  <div class="scroll">
-  <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-  <span class="img-move">
-    <span class="img-move">
-      <h4 class="font-weight-lighter text-center text-warning">Gas Griller</h4>
-      <img src="assets/image/icon1.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Sirlion Griller Steaks</h4>
-        <img src="assets/image/sirloin.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Imarflex ICG-250T Griller</h4>
-        <img src="assets/image/icon6.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Pigeon Sandwich Griller 700 Watts</h4>
-        <img src="assets/image/icon5.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Sandwich Griller SG-JUMBO</h4>
-        <img src="assets/image/icon4.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Emile Henry Flame Fish Griller Slate</h4>
-        <img src="assets/image/icon.jpg" style="width:400px;height:200px">
-    </span>
-  </span>
-  </marquee>
-  </div>
-</div> -->
 
 
 
@@ -58,8 +19,17 @@
 
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)">
+          <option>Choose City</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Mumbai">Mumbai</option>
+        </select>
     <div class="container">
       <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+      
+      
+      
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -75,7 +45,7 @@
             <a href="services.html" class="nav-link">Services</a>
           </li>
           <li class="searchbar">
-            <input type="text" id="searchbar-input">
+            <input type="text" #search id="searchbar-input" (change)="searchBarFilter(search.value)">
             <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
             <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
           </li>
@@ -191,10 +161,11 @@
 
   <!-- PHOTO GALLERY -->
   <div class="container">
-      <h3 class="h3"></h3>
+      <h1 class="text-center">Photo Gallery</h1>
+      <p class="text-center">Check out our Grillers</p>
       <div class="row">
           <span class="grillerList" *ngFor="let success of grillers">
-          <div class="col-md-6 col-sm-2">
+          <div class="col-md-6">
               <div class="product-grid2">
                   <div class="product-image2">
                       <a href="#">
