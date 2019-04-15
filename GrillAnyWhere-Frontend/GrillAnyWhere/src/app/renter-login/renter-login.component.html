@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Services</a>
+          </li>
+          <li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </li>
+          <button type="button" class="btn btn-info" routerLink="/login" >
+            Owner's Login
+          </button>
+          <li>
+            &nbsp;&nbsp;
+          </li>
+          <button type="button" class="btn btn-info" routerLink="/renter-login" >
+            Renter's Login
+          </button>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+      <div class="row justify-content-md-center">
+  <div class="card"  style="width: 40rem;">
+  <h2 class="card-header">Login</h2>  
+  <div class="card-body">
+    
+  <form [formGroup]="userForm" (submit)="save()">
+      <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" formControlName="email" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Username is required</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <input  type="submit" [disabled]="loading" class="btn btn-primary" value="Login" id="loginID"/>
+         <!--<img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
+          <div class="register" style="color:cadetblue">
+            Don't have an account yet?
+          </div><a [routerLink]="['/renter-register']" class="btn btn-link">Register</a>
+      </div>
+      
+  <div class="modal-footer">
+   <a href="/"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a> 
+   
+  </div>
+  </form>
+  </div>
+  </div>
+  </div>
+  </div>

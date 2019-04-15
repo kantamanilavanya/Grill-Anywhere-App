@@ -19,7 +19,7 @@ export class OwnerDashboardComponent implements OnInit {
   logout(){
     sessionStorage.removeItem('ownername');
     this.router.navigate(['/'])
-    window.location.reload();
+   // window.location.reload();
   }
 
 }

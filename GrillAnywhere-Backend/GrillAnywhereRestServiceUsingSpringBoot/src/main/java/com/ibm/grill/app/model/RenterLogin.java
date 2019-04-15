@@ -1,19 +1,20 @@
 package com.ibm.grill.app.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-public class Login {
+public class RenterLogin {
 	
 	private String userName;
 	private String password;
 	
-	public Login()
+	public RenterLogin()
 	{
 		
 	}
 	
-	public Login(String userName, String password)
+	public RenterLogin(String userName, String password)
 	{
 		this.userName = userName;
 		this.password = password;

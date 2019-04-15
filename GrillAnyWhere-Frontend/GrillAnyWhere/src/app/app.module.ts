@@ -11,6 +11,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ManualComponent } from './manual/manual.component';
 import { AutomaticComponent } from './automatic/automatic.component';
+import { RenterLoginComponent } from './renter-login/renter-login.component';
+import { RenterRegistrationComponent } from './renter-registration/renter-registration.component';
 
 //import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 //import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
@@ -29,6 +31,8 @@ import { AutomaticComponent } from './automatic/automatic.component';
     NavBarComponent,
     ManualComponent,
     AutomaticComponent,
+    RenterLoginComponent,
+    RenterRegistrationComponent,
     //OwnerDashboardComponent
   ],
   imports: [

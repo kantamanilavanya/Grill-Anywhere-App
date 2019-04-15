@@ -4,11 +4,11 @@ import { RenterService } from "../renter.service";
 import { OwnerService } from "../owner.service";
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: 'app-renter-registration',
+  templateUrl: './renter-registration.component.html',
+  styleUrls: ['./renter-registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RenterRegistrationComponent implements OnInit {
   private userForm:FormGroup
   private user:any
   public errorMessage:string
@@ -52,7 +52,7 @@ export class RegistrationComponent implements OnInit {
 
   
 
-  save(){
+  saveOwner(){
     this.submitted = true;
     //console.log(this.userForm)
     if(this.userForm.status !='INVALID'){
@@ -65,7 +65,7 @@ export class RegistrationComponent implements OnInit {
         password: this.userForm.controls['password'].value
       }
       // Add a new User 
-      this.serviceOwner.buildAndCreateUser({ 
+      this.service.buildAndCreateUser({ 
         name:this.user.name,
         email:this.user.email,
         address:this.user.address,
@@ -85,7 +85,5 @@ export class RegistrationComponent implements OnInit {
     }else{
       this.errorMessage = 'Please verify your errors'
     }
-  }
-
-  
+  }  
 }

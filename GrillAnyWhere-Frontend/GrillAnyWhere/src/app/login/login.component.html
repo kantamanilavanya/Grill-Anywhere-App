@@ -19,107 +19,53 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
         <button type="button" class="btn btn-info" routerLink="/login" >
-          LOGIN
+          Owner's Login
         </button>
         <li>
           &nbsp;&nbsp;
         </li>
-        <button type="button" class="btn btn-info" routerLink="/register" >
-          REGISTER
+        <button type="button" class="btn btn-info" routerLink="/renter-login" >
+          Renter's Login
         </button>
       </ul>
     </div>
   </div>
 </nav>
-
-<!--login modal-->
-<div>
-  <div>
-    <ul class="nav nav-tabs bg-light" role="tab-list">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#renter-login">Login as a Owner</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#owner-login">Login as a Register</a>
-      </li>
-    </ul>
-    <br /><br><br><br>
-    <div class="tab-content">
-      <!--Renter Login-->
-      <div id="renter-login" class="container tab-pane active">
-
-        <div class="col-md-6  offset-sm-2">
-          <form [formGroup]="userForm" novalidate (submit)="saveData()">
-
-            <div>
-              <input type="text" formControlName="email" name="email" ng-model="email" placeholder="Enter your Email Id ..."
-                class='form-control input' />
-              <span *ngIf="userForm.controls['email'].errors">
-                <span class='text-danger' *ngIf="userForm.controls['email'].errors.required">
-                  * Email is Required
-                </span>
-                <span class='text-danger' *ngIf="userForm.controls['email'].errors.email">
-                  Please specify your register Email
-                </span>
-              </span>
-            </div><br>
-
-
-
-
-
-            <div>
-              <input type="password" formControlName="password" name="password" ng-model="password" placeholder="Enter your Password ..."
-                class='form-control input' />
-              <span *ngIf="userForm.status =='INVALID' ">
-                <span class='text-danger' *ngIf="userForm.controls['password'].errors">
-                  <span *ngIf="userForm.controls['password'].errors.required">
-                    * Please create a Password
-                  </span>
-                </span>
-              </span>
-            </div><br>
-
-            <input type="submit" name="save" value="LOGIN" class='btn btn-primary button' />
-          </form>
+<div class="container">
+    <div class="row justify-content-md-center">
+<div class="card"  style="width: 40rem;">
+<h2 class="card-header">Login</h2>  
+<div class="card-body">
+  
+<form [formGroup]="userForm" (submit)="saveData()">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" formControlName="email" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Username is required</div>
         </div>
-      </div>
-
-      <!--Owner login-->
-      <div id="owner-login" class="container tab-pane ">
-
-        <div class="col-md-6 offset-sm-2">
-          <form [formGroup]="userForm" novalidate (submit)="save()">
-
-            <div>
-              <input type="text" formControlName="email" name="email"
-               placeholder="Owner Email Id ..." class='form-control input ' />
-              <span *ngIf="userForm.controls['email'].errors">
-                <span class='text-danger' *ngIf="userForm.controls['email'].errors.required">
-                  * Email is Required
-                </span>
-                <span class='text-danger' *ngIf="userForm.controls['email'].errors.email">
-                  Please specify your register Email
-                </span>
-              </span>
-            </div><br>
-
-
-
-            <div>
-              <input type="password" formControlName="password" name="password" placeholder="Enter your Password ..."
-                class='form-control input' />
-              <span *ngIf="userForm.status =='INVALID' ">
-                <span class='text-danger' *ngIf="userForm.controls['password'].errors">
-                  <span *ngIf="userForm.controls['password'].errors.required">
-                    * Please enter Password
-                  </span>
-                </span>
-              </span>
-            </div><br>
-
-            <input type="submit" name="save" value="LOGIN" class='btn btn-primary button' />
-          </form>
-        </div>
-      </div>
     </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input  type="submit" [disabled]="loading" class="btn btn-primary" value="Login" id="loginID"/>
+       <!--<img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
+        <div class="register" style="color:cadetblue">
+          Don't have an account yet?
+        </div><a [routerLink]="['/register']" class="btn btn-link">Register</a>
+    </div>
+    
+<div class="modal-footer">
+  <a href="/"> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></a>
+ 
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>

@@ -34,7 +34,7 @@
        <div class="card"  style="width: 40rem;">
         <h2 class="card-header">Register</h2>  
           <div class="card-body">
-            <form [formGroup]="userForm" novalidate (submit)="save()">
+            <form [formGroup]="userForm" novalidate (submit)="saveOwner()">
               <div class="formgroup">
                 <label for="name">Name</label>
                 <input type="text" formControlName="name" name="name" placeholder="User Name ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['name'].errors }"/>
@@ -84,7 +84,7 @@
               <input type="submit" name="save" value="REGISTER" class='btn-primary button' />
             </div>   
             <div class="modal-footer">
-              <a href="/login"><button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>  </a>
+              <a href="/login"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  </a>
             </div>             
             </form>
           </div>
