@@ -65,25 +65,27 @@
 
 <div id="demo" class="carousel slide" data-ride="carousel">
 
-  <!-- Indicators -->
+
   <ul class="carousel-indicators">
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
     <li data-target="#demo" data-slide-to="2"></li>
   </ul>
 
-  <!-- The slideshow -->
+ 
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="assets/images/image1.jpg" alt="Los Angeles">
+    <div class="carousel-item active d-none d-sm-block mb-5">
+      <img  class="image" src="assets/images/image1.jpg" alt="Los Angeles">
     </div>
     <div class="carousel-item">
-      <img src="assets/images/image2.jpg" width="1100" height="200" alt="Chicago">
+      <img  class="image" src="assets/images/image2.jpg"  alt="Chicago">
     </div>
     <div class="carousel-item">
-      <img src="assets/images/image3.jpg" alt="New York" width="1100" height="500">
+      <img  class="image" src="assets/images/image3.jpg" alt="New York" >
     </div>
-  </div>
+  </div>  
+
+  
 
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -93,5 +95,31 @@
     <span class="carousel-control-next-icon"></span>
   </a>
 </div>
-
 <br><br>
+<body class="container"><div id="menu" class="card-columns" >
+    <ul>
+      <div class="card-columns ">
+      <li *ngFor="let success of grillers">
+          <div class="col-4-lg">
+          <div class="column div ">
+              <div class="card border-white" style="width: 14rem;">
+                  <img class="card-img-top image1" src="assets/images/griller10.jpg" alt="Card image cap">
+                  <span class="badge badge-pill badge-warning">New</span>
+                  <div class="card-body">
+                      <p class="card-text text-primary ">{{success.grillName}}<br>
+                        Starts from{{success.price}}$</p>
+                      </div>
+                </div>
+           
+            </div>
+          </div>
+      </li>
+    </div>
+      </ul>
+    </div>
+  </body> 
+
+
+
+    
+  

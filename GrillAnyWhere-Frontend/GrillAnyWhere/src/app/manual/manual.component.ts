@@ -11,10 +11,12 @@ private grillers:any[]
   constructor(private service:GrillerService) { }
 
   ngOnInit() {
-    this.onloadFun()
+    this.service.getGrillerManual(success=>{
+      this.grillers=success;
+    });
   }
   onloadFun(){
-    this.service.getGrillerAutomatic(success=>{
+    this.service.getGrillerManual(success=>{
       this.grillers=success;
     });
   }

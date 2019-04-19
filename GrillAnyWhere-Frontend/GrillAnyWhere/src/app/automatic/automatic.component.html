@@ -55,30 +55,26 @@
               </div>
             </div> 
          -->
-         <body class="container">
-
-
-    
-          <div id="menu" class="card-columns" >
-          <ul>
-            <div class="card-columns ">
-            <li *ngFor="let success of grillers">
-                <div class="column">
-                    <div class="card" style="width: 18rem;height:28rem">
-                        <div class="card-body">
-                      <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap">
-                      
-                        <hr>
-                        <p class="card-text">{{success.grillName}}</p>
-                        <hr>
-                        <p>Starts From {{success.price}}$</p>
-                        <hr>
-                        <a href="#">More Info</a>
-                      </div>
+         <body class="container"><div id="menu" class="card-columns" >
+            <ul>
+              <div class="card-columns ">
+              <li *ngFor="let success of grillers">
+                  <div class="col-4-lg">
+                  <div class="column div ">
+                      <div class="card border-white" style="width: 14rem;">
+                          <img class="card-img-top image" src="assets/images/griller10.jpg" alt="Card image cap">
+                          <span class="badge badge-pill badge-warning">New</span>
+                          <div class="card-body">
+                              <p class="card-text text-primary ">{{success.grillName}}<br>
+                                Starts from{{success.price}}$</p>
+                              </div>
+                        </div>
+                   
                     </div>
                   </div>
-            </li>
-          </div>
-            </ul>
-          </div>
-        </body> 
+              </li>
+            </div>
+              </ul>
+            </div>
+          </body> 
+          
