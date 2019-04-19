@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
   <a class="navbar-brand" href="#">OWNER DASHBOARD</a>
@@ -12,18 +13,18 @@
    
     <div></div>
     <ul class="list-group">
-      <li class="list-group-item bg-dark">
+      <li class="list-group-item bg-light">
 
         <a href="#" class="">My Profile</a>
 
       </li>
-      <li class="list-group-item bg-dark">
+      <li class="list-group-item bg-light">
 
           <a  href="#" data-toggle="modal" data-target="#myModal">Add Griller</a>
 
       </li>
       
-      <li class="list-group-item bg-dark">
+      <li class="list-group-item bg-light">
 
         <a href="#" class="">Sign Out</a>
 
@@ -31,31 +32,33 @@
     </ul>
 
   </div>
-
+  
 
   
-  <body class="container">
-
-
-    
-    <div id="menu" class="card-columns" >
+  <body class="container"><div id="menu" class="card-columns" >
     <ul>
       <div class="card-columns ">
       <li *ngFor="let success of grillers">
-          <div class="column">
-              <div class="card" style="width: 18rem;height:28rem">
-                  <div class="card-body">
-                <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap">
-                
-                  <hr>
-                  <p class="card-text">{{success.grillName}}</p>
-                  <hr>
-                  <p>Starts From {{success.price}}$</p>
-                  <hr>
-                  <a href="#">More Info</a>
+          <div class="col-4-lg">
+          <div class="column div ">
+              <div class="card border-white" style="width: 15rem;">
+                  <img class="card-img-top image" src="assets/images/griller10.jpg" alt="Card image cap">
+                  <span class="card-text "><h5>{{success.grillName}}</h5></span>
+                 <span class="card-text text-primary">{{success.location}}</span>
+                 
+                  <div>
+                    <span class="fa fa-star checked btn-success btn-sm">3.5</span>&nbsp;
+                    <span class="text-primary">.</span>&nbsp;
+                    <span class="text-primary">Min 4 hrs</span>&nbsp;
+                    <span class="text-primary">.</span>&nbsp;
+                        <span class="text-primary">{{success.price}}$</span>
+                    
+                       
+                      </div>
                 </div>
-              </div>
+           
             </div>
+          </div>
       </li>
     </div>
       </ul>
@@ -111,9 +114,9 @@
               <span>
                 <select class='form-control ' formControlName="grillerType">
                   <option>---Select Type of Griller</option>
-                  <option value="electric-griller">Manual Griller</option>
-                  <option value="charcoal-griller">Automatic Griller</option>
-                  <option value="gas-griller">Gas Griller</option>
+                  <option value="ManualGriller">ManualGriller</option>
+                  <option value="AutomaticGriller">AutomaticGriller</option>
+                 
                 </select>
               </span>
               <span *ngIf="userForm.status =='INVALID' ">
@@ -153,12 +156,26 @@
               </span>
             </div>
                 <br/>
+                <div class="col-xs-4">
+                  <span>
+                    <input type="file" formControlName="image" id="image" class='form-control '>
+                  </span>
+                  <span *ngIf="userForm.status =='INVALID' ">
+                    <span class='text-danger' *ngIf="userForm.controls['image'].errors">
+                      <span *ngIf="userForm.controls['image'].errors.required">
+                        * image is Required
+                      </span>  
+                    </span>  </span>
+                </div><br>
+                
+                
                 <div class="modal-footer" >
                   <div class="col-sm-10">
                     <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>&nbsp;
                     <input type="submit" name="save" value="SAVE" class='btn btn-primary btn-lg' /></div>
                   </div>
                   </form>
+                  
             </div>
             
           </div>

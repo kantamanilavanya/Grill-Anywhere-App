@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@07" ){
       
       this.router.navigate(['./owner-dashboard']);
-      window.location.reload();
+      //window.location.reload();
     }else
     {
       alert("please provide valid data to login");
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       
       
       this.router.navigate(['./renter-dashboard']);
-      window.location.reload();
+     // window.location.reload();
     }else
     {
       alert("please provide valid data to login")

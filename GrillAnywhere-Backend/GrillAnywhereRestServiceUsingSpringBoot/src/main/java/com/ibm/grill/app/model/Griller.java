@@ -18,12 +18,23 @@ public class Griller {
 	private String grillerDescriptions;
 	private Double price;
 	private String location;
+	private byte[] image;
+
+	
 
 	/*
 	 * @Lob private byte[] grillImage;
 	 */
 	public int getGrillId() {
 		return grillId;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public void setGrillId(int grillId) {

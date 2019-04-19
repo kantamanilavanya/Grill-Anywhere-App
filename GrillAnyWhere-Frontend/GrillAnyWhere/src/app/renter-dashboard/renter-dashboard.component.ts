@@ -32,7 +32,8 @@ export class RenterDashboardComponent implements OnInit {
         grillerType: ['',Validators.required],
         location: ['',Validators.required],
         grillerDescriptions: ['',Validators.required],
-        price: ['',Validators.required]
+        price: ['',Validators.required],
+        image:['',Validators.required]
         
       })
     }
@@ -46,7 +47,8 @@ export class RenterDashboardComponent implements OnInit {
           grillerType: this.userForm.controls['grillerType'].value,
           location: this.userForm.controls['location'].value,
           grillerDescriptions: this.userForm.controls['grillerDescriptions'].value,
-          price: this.userForm.controls['price'].value
+          price: this.userForm.controls['price'].value,
+          image: this.userForm.controls['image'].value
           
         }
         // Add a new User 
@@ -55,8 +57,8 @@ export class RenterDashboardComponent implements OnInit {
           grillerType:this.user.grillerType,
           location:this.user.location,
           grillerDescriptions:this.user.grillerDescriptions,
-          price:this.user.price
-          
+          price:this.user.price,
+         image:this.user.image
         },(err)=>{
           if(err! =null){
             console.log('Unable to Process request')

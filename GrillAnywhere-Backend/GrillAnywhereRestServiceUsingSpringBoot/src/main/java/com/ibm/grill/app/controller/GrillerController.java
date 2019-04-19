@@ -62,8 +62,6 @@ public class GrillerController {
 		binder.setValidator(validator);
 	}
 
-	
-	
 	/*
 	 * @CrossOrigin(origins = "*") //@PostMapping(consumes =
 	 * MediaType.MULTIPART_FORM_DATA_VALUE, produces =
@@ -84,19 +82,18 @@ public class GrillerController {
 	 * griller.getGrillId()); return ResponseEntity.created(locationUri).build(); //
 	 * return new ResponseEntity<Employee>(employee, HttpStatus.OK); }
 	 */
-	 
+
 	@CrossOrigin(origins = "*")
-	//@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	 @PostMapping
+	// @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces =
+	// MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping
 	public HttpEntity<? extends Object> addGriller(@RequestBody Griller griller, WebRequest request,
 			HttpSession session, BindingResult bindingResult)
 			throws LoginException, ValidationException, URISyntaxException, IOException {
 
 		
-		/*
-		 * MultipartFile originalPic =griller.getGrillImage(); byte[] ImageInByte =
-		 * originalPic.getBytes();
-		 */
+		 
+		
 
 		validator.validate(griller, bindingResult);
 
@@ -111,7 +108,7 @@ public class GrillerController {
 		return ResponseEntity.created(locationUri).build();
 //		return new ResponseEntity<Employee>(employee, HttpStatus.OK);		
 	}
-	
+
 	@CrossOrigin(origins = "*")
 	@GetMapping("/byGrillerType/{grillerType}")
 	public HttpEntity<List<Griller>> getEmployee(@PathVariable String grillerType, HttpSession session) {
@@ -138,9 +135,7 @@ public class GrillerController {
 	 * name + " => " + e.getMessage(); } } else { return "You failed to upload " +
 	 * name + " because the file was empty."; } }
 	 */
-	 
-	
-	
+
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public HttpEntity<List<Griller>> listGrillers(HttpSession session) {
