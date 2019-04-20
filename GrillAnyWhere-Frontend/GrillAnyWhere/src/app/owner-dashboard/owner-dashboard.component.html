@@ -95,15 +95,18 @@
     <span class="carousel-control-next-icon"></span>
   </a>
 </div>
+
 <br><br>
-<body class="container"><div id="menu" class="card-columns" >
+<body class="container">
+    
+  <div id="menu" class="card-columns" >
     <ul>
       <div class="card-columns ">
       <li *ngFor="let success of grillers">
           <div class="col-4-lg">
           <div class="column div ">
               <div class="card border-white" style="width: 14rem;">
-                  <img class="card-img-top image1" src="assets/images/griller10.jpg" alt="Card image cap">
+                  <img class="card-img-top" src="assets/images/{{success.grillImage}}" alt="Card image cap">
                   <span class="badge badge-pill badge-warning">New</span>
                   <div class="card-body">
                       <p class="card-text text-primary ">{{success.grillName}}<br>

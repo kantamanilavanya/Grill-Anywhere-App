@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
@@ -61,39 +63,11 @@ public class GrillerController {
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
 	}
-
-	/*
-	 * @CrossOrigin(origins = "*") //@PostMapping(consumes =
-	 * MediaType.MULTIPART_FORM_DATA_VALUE, produces =
-	 * MediaType.APPLICATION_JSON_VALUE)
-	 * 
-	 * @PostMapping public HttpEntity<? extends Object> addGriller(@RequestBody
-	 * Griller griller, WebRequest request, HttpSession session, BindingResult
-	 * bindingResult) throws LoginException, ValidationException,
-	 * URISyntaxException, IOException { validator.validate(griller, bindingResult);
-	 * 
-	 * if (bindingResult.hasErrors()) { throw new
-	 * ValidationException(bindingResult); }
-	 * 
-	 * grillService.add(griller);
-	 * 
-	 * // return new ResponseEntity<String>(empId, HttpStatus.CREATED); URI
-	 * locationUri = new URI("/SpringRESTEmployeeCRUDEx/griller/" +
-	 * griller.getGrillId()); return ResponseEntity.created(locationUri).build(); //
-	 * return new ResponseEntity<Employee>(employee, HttpStatus.OK); }
-	 */
-
 	@CrossOrigin(origins = "*")
-	// @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces =
-	// MediaType.APPLICATION_JSON_VALUE)
-	@PostMapping
-	public HttpEntity<? extends Object> addGriller(@RequestBody Griller griller, WebRequest request,
-			HttpSession session, BindingResult bindingResult)
-			throws LoginException, ValidationException, URISyntaxException, IOException {
-
-		
-		 
-		
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Griller> UploadFile(@RequestPart MultipartFile file, WebRequest request,
+			@ModelAttribute Griller griller, HttpSession session, BindingResult bindingResult)
+			throws IOException, URISyntaxException, ValidationException {
 
 		validator.validate(griller, bindingResult);
 
@@ -101,12 +75,11 @@ public class GrillerController {
 			throw new ValidationException(bindingResult);
 		}
 
+		griller.setGrillImage(file.getOriginalFilename());
 		grillService.add(griller);
-
-		// return new ResponseEntity<String>(empId, HttpStatus.CREATED);
 		URI locationUri = new URI("/SpringRESTEmployeeCRUDEx/griller/" + griller.getGrillId());
 		return ResponseEntity.created(locationUri).build();
-//		return new ResponseEntity<Employee>(employee, HttpStatus.OK);		
+		// Upload Logic
 	}
 
 	@CrossOrigin(origins = "*")
@@ -115,27 +88,7 @@ public class GrillerController {
 
 		return new ResponseEntity<List<Griller>>(grillService.listByGrillerType(grillerType), HttpStatus.OK);
 	}
-	/*
-	 * @CrossOrigin(origins = "*")
-	 * 
-	 * @RequestMapping(method = RequestMethod.POST)
-	 * 
-	 * public @ResponseBody String handleFileUpload(@ModelAttribute Griller griller,
-	 * 
-	 * @RequestParam("file") MultipartFile file) {
-	 * 
-	 * String name = "test11"; if (!file.isEmpty()) { try {
-	 * 
-	 * 
-	 * byte[] bytes = file.getBytes(); BufferedOutputStream stream = new
-	 * BufferedOutputStream( new FileOutputStream(new File(name + "-uploaded")));
-	 * griller.setGrillImage(bytes); grillService.add(griller); stream.write(bytes);
-	 * stream.close(); return "You successfully uploaded " + name + " into " + name
-	 * + "-uploaded !"; } catch (Exception e) { return "You failed to upload " +
-	 * name + " => " + e.getMessage(); } } else { return "You failed to upload " +
-	 * name + " because the file was empty."; } }
-	 */
-
+	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public HttpEntity<List<Griller>> listGrillers(HttpSession session) {
@@ -144,17 +97,17 @@ public class GrillerController {
 	}
 
 	@CrossOrigin(origins = "*")
+@GetMapping("byID/{id}")
+	public HttpEntity<Griller> getGriller(@PathVariable int id, HttpSession session) {
 
-	@GetMapping("byID/{id}")
-	public HttpEntity<List<Griller>> getGriller(@PathVariable int id, HttpSession session) {
-
-		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.get(id), HttpStatus.OK);
+		return new ResponseEntity<Griller>((Griller)grillService.get(id), HttpStatus.OK);
 	}
 
 	@CrossOrigin(origins = "*")
 	@PutMapping("/{id}")
-	public HttpEntity<? extends Object> updateGriller(@RequestBody Griller griller, @PathVariable int id,
-			WebRequest request, HttpSession session, BindingResult bindingResult) throws ValidationException {
+	public HttpEntity<? extends Object> updateGriller(@RequestPart MultipartFile file, WebRequest request,
+			@ModelAttribute Griller griller, @PathVariable int id,
+			 HttpSession session, BindingResult bindingResult) throws ValidationException {
 
 		validator.validate(griller, bindingResult);
 
@@ -163,6 +116,7 @@ public class GrillerController {
 		}
 
 		griller.setGrillId(id);
+		griller.setGrillImage(file.getOriginalFilename());
 		grillService.update(griller);
 
 		return new ResponseEntity<String>("{\"Status\":\"Success\"}", HttpStatus.OK);
