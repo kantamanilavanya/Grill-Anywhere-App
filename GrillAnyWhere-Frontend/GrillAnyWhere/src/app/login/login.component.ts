@@ -23,10 +23,10 @@ export class LoginComponent implements OnInit {
   this.buildForm()
   }
   ngOnInit() {
-    this.flag=sessionStorage.getItem('flagMsg');
-    if(this.flag==1){
-      this.msg="Please Login before Rent .....";
-    }
+    // this.flag=sessionStorage.getItem('flagMsg');
+    // if(this.flag==1){
+    //   this.msg="Please Login before Rent .....";
+    // }
   }
   buildForm() {
     this.userForm = this.builder.group({
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     }
    
     
-    if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@07" ){
+    if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@08" ){
       
       this.router.navigate(['./renter-dashboard']);
      // window.location.reload();

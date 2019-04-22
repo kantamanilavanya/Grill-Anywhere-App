@@ -9,6 +9,7 @@ import { RegistrationComponent } from "./registration/registration.component";
 import { ManualComponent} from "./manual/manual.component";
 import { AutomaticComponent} from "./automatic/automatic.component";
 import { FilterComponent} from "./filter/filter.component";
+import { GrillerInfoComponent } from "./griller-info/griller-info.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'filter',
     component: FilterComponent
+  },
+  {
+    path: 'renter-dashboard/grillInfo',
+    component: GrillerInfoComponent
   },
   {
     path: '**',

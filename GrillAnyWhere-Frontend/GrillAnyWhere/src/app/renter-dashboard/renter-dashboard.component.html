@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand bg-dark navbar-dark sticky-top">
+<!-- <nav class="navbar navbar-expand bg-dark navbar-dark sticky-top">
   <div class="container">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -62,36 +62,181 @@
   </div>
 </nav>
 
+ -->
 
-<div id="demo" class="carousel slide" data-ride="carousel">
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container">
+      <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)">
+          <option>Choose City</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Hyderabad">Hyderabad</option>
+        </select>
+    <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+          <li class="searchbar">
+              <input type="text" #search id="searchbar-input" (change)="searchBarFilter(search.value)">
+              <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
+              <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
+            </li>
+        <li class="nav-item active">
+          <a href="#allProducts" data-toggle="tab" class="nav-link">All Products</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" routerLink="/manual" class="nav-link">Manual</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" routerLink="/automatic" class="nav-link">Automatic</a>
+        </li>
 
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="assets/images/image1.jpg" alt="Los Angeles">
-    </div>
-    <div class="carousel-item">
-      <img src="assets/images/image2.jpg" width="1100" height="200" alt="Chicago">
-    </div>
-    <div class="carousel-item">
-      <img src="assets/images/image3.jpg" alt="New York" width="1100" height="500">
+        <li>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;">
+              <span class="fa fa-user"></span> 
+              <strong>Welcome User</strong>
+              <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <div class="navbar-login">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <span class="fa fa-user" style="font-size:90px"></span>
+                    </div>
+
+                    <div class="col-lg-8">
+                      <p class="text-left"><strong>username</strong></p>
+                      <i class="fa fa-edit"></i>
+                      <a href="#profile" data-toggle="tab" class="text-left small" style="text-decoration: none;">Edit
+                        Profile</a>
+                      <br /><br />
+                      <hr>
+                      <p class="text-left">
+                        <a href="#" class="" style="text-decoration: none;">My Order</a>
+                      </p>
+                      <p class="text-left">
+                        <a href="#" class="" style="text-decoration: none;">My Cart</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <div class="navbar-login navbar-login-session">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p>
+                        <a href="#" class="btn btn-danger btn-block">Log Out</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+      </ul>
     </div>
   </div>
+</nav>
 
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
+<body class="container">
 
-<br><br>
+
+
+
+  <div class="tab-content">
+    <!-- All products -->
+    <div id="allProducts" class="container tab-pane in active">
+      <br /><br />
+      <div class="row">
+        <span id="grillerList" *ngFor="let success of grillers">
+          <div class="col-md-10">
+            <div class="product-grid2">
+              <div class="product-image2">
+                <a href="#">
+                  <!-- <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap"> -->
+                  <img class="pic-1" src="assets/images/{{success.grillImage}}">
+                  <img class="pic-2" src="assets/images/{{success.grillImage}}">
+                </a>
+                <ul class="social">
+                  <li><a data-tip="Quick View"
+                      (click)="grillerInfo(success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
+                      href="#grillerInfoModal" data-toggle="tab"><i class="fa fa-eye"></i></a></li>
+
+                  <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                </ul>
+                <a class="add-to-cart" href="" routerLink="/login" (click)="setFlag()">Rent Now</a>
+              </div>
+              <div class="product-content">
+                <h3 class="title"><a href="#">{{success.grillName}}</a></h3>
+                <span class="price">Rent (per hr.) : {{success.price}}</span>
+              </div>
+            </div>
+          </div>
+        </span>
+
+      </div>
+    </div>
+
+    <!-- My Profile -->
+    <div id="profile" class="container tab-pane">
+      Edit my profile details
+    </div>
+
+    <!-- Modal -->
+    <div id="grillerInfoModal" class="container tab-pane">
+      <br/><br/>
+      <button type="button" class="btn btn-info" (click)="back()">
+        Back to Menu
+      </button>
+      <div class="row">
+
+        <div class="col-lg-4">
+          <img class="card-img-top image" src="assets/images/{{grillImage}}" alt="Card image cap">
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h3>{{grillName}}</h3>
+            </div>
+            <div class="card-body">
+              <br />
+              <p>Type : {{grillerType}}</p>
+              <p>Rent (per hr.) : {{price}}</p>
+              <p>Available in : {{location}}</p>
+              <p>Description : {{grillerDescriptions}}</p>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-lg btn-block btn-secondary">ADD TO CART</button>
+                <button type="submit" id="rentBtn" class="btn btn-lg btn-block btn-primary" routerLink="/login"
+                  (click)="rentFunc()">RENT NOW</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+  </div>
+
+  
+
+  
+</body>

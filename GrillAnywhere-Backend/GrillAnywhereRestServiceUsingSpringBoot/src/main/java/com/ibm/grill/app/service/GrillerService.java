@@ -1,10 +1,12 @@
 package com.ibm.grill.app.service;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.ibm.grill.app.model.Griller;
 import com.ibm.grill.app.repository.GrillerRepositoryMySQL;
@@ -17,52 +19,47 @@ public class GrillerService {
 	
 
 	@Autowired
-	private GrillerRepositoryMySQL employeeRepository;
+	private GrillerRepositoryMySQL grillerRepository;
 
-	public void add(Griller employee) {
+	public void add(Griller griller) {
 //		int empId = employees.size() + 1;	
 //		employee.setId(empId);			
 //		employees.put(employee.getId(), employee);
-		employeeRepository.save(employee);
+		grillerRepository.save(griller);
 	}
 
-	public void update(Griller employee) {
+	public void update(Griller griller) {
 
 //		employees.put(employee.getId(), employee);
-		employeeRepository.save(employee);
+		grillerRepository.save(griller);
 	}
 
-	public Griller get(int empId) {
-		return employeeRepository.findById(empId).get();
+	public Griller get(int grillID) {
+		return grillerRepository.findById(grillID).get();
 	}
 
-	public void delete(int empId) {
-		employeeRepository.deleteById(empId);
+	public void delete(int grillID) {
+		grillerRepository.deleteById(grillID);
 	}
 
 	public List<Griller> list() {		
 
-		return (List<Griller>) employeeRepository.findAll();
+		return (List<Griller>) grillerRepository.findAll();
 	}
 	
-	
-	//daminee's part
-	public List<Griller> findByGrillerType(String grillType)
-	{
-		return employeeRepository.findByGrillerType(grillType);
+	public List<Griller> listByGrillerType(String grillerType) {		
+//		return new ArrayList<Employee>(employees.values());
+		return (List<Griller>) grillerRepository.findByGrillerType(grillerType);
 	}
-	
-	public List<Griller> findByLocation(String location)
-	{
-		return employeeRepository.findByLocation(location);
-	}
-	public List<Griller> findByPrice(double price)
-	{
-		return employeeRepository.findByPrice(price);
-	}
-	
-	
 	
 
+	public List<Griller> findByLocation(String location)
+	{
+		return grillerRepository.findByLocation(location);
+	}
+//	public List<Griller> findByGrillerType(String grillType)
+//	{
+//		return grillerRepository.findByGrillerType(grillType);
+//	}
 	
 }

@@ -8,12 +8,7 @@ import com.ibm.grill.app.model.Griller;
 
 public interface GrillerRepositoryMySQL extends CrudRepository<Griller,Integer>{
 	
-	//public List<Griller> findByDepartment(String department);
-	
-	//daminnes part
 	public List<Griller> findByGrillerType(String grillerType);
 	public List<Griller> findByLocation(String location);
-	
-	public List<Griller> findByPrice(double price);
 
 }

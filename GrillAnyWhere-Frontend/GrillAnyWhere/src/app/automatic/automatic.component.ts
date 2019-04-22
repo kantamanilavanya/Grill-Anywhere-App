@@ -26,7 +26,7 @@ export class AutomaticComponent implements OnInit {
     
     onLoad(){
       this.user={
-        grillerType:"Automatic"
+        grillerType:"AutomaticGriller"
         }
       this.service.findByGrillerType(this.user,success=>{
         this.grillers=success;

@@ -15,6 +15,7 @@ import { AutomaticComponent } from './automatic/automatic.component';
 import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
 import { FilterComponent } from './filter/filter.component';
+import { GrillerInfoComponent } from './griller-info/griller-info.component';
 
 //import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 //import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
@@ -38,7 +39,9 @@ import { FilterComponent } from './filter/filter.component';
     
     RenterDashboardComponent,
     
-    FilterComponent
+    FilterComponent,
+    
+    GrillerInfoComponent
     //OwnerDashboardComponent
   ],
   imports: [

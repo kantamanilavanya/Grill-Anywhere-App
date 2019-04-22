@@ -1,0 +1,39 @@
+<div id="grillerInfoModal" >
+    
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            
+          <div class="modal-header bg-info">
+            <h3 class="offset-sm-4 text-warning">Griller Information</h3>
+          </div>
+          
+          <div class="modal-body">
+             <div class="row">
+               <div class="col-sm-6">
+                  <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap">
+               </div>
+               <div class="col-sm-6">
+                 <div class="card">
+                   <div class="card-header">
+                      <h3>{{grillName}}</h3>
+                   </div>
+                   <div class="card-body">
+                     <br/>
+                     <p>Type : {{grillerType}}</p>
+                     <p>Rent (per hr.) : {{price}}</p>
+                     <p>Available in : {{location}}</p>
+                     <p>Description :  {{grillerDescriptions}}</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+          </div>
+          
+          
+          <div class="modal-footer">
+              <button type="submit" class="btn btn-lg btn-block btn-secondary">ADD TO CART</button>
+              <button type="submit" id="rentBtn" class="btn btn-lg btn-block btn-primary" routerLink="/login" (click)="rentFunc()">RENT NOW</button>
+          </div>
+        </div>
+      </div>
+  </div>
