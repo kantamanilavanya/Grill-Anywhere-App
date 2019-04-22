@@ -36,18 +36,18 @@
    
     <body class="container"><div id="menu" class="card-columns" >
       <ul>
-        <div class="card-columns ">
+        <div class="card-columns justify-content-center ">
         <li *ngFor="let success of grillers">
             <div class="col-4-lg">
-            <div class="column div ">
-                <div class="card border-white" style="width: 15rem;">
-                  
+            <div class="column div">
+                <div class="card border-white" style="width: 18rem;padding: 30px;">
+                   
                     <button class="btn btn-info btn-sm" (click)="storeId(success.grillId)" data-toggle="modal" data-target="#myModal2"   >
                         Edit
                         </button> 
                         <input type="hidden" name="grillId" value="{{success.grillId}}" ng-model="success.grillId"/>
                   
-                  <button type="button" class="close btn btn-info btn-sm" aria-label="Close" (click)="delete(success.grillId)" >
+                  <button class="close btn btn-danger btn-sm" aria-label="Close" (click)="delete(success.grillId)" >
                     
                     <span aria-hidden="true">&times;</span>
                   </button>

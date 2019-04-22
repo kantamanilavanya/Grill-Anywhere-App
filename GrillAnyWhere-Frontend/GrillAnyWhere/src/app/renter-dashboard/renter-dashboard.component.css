@@ -12,6 +12,10 @@
   img{
     margin: 30 10 0 40px;
   }
+  .row1{
+height: 25%;
+width: 100%;
+  }
   .image{
     width: 222px;
     height: 180px;
@@ -77,10 +81,12 @@
 }
 
 .card-columns {
-  
+  display: -ms-flexbox;
+ 
   @include media-breakpoint-only(xl) {
-    column-count: 8;
+    column-count: 5;
   }
+ 
  }
   
  
