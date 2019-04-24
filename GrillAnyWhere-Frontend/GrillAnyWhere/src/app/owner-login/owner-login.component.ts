@@ -6,11 +6,12 @@ import { FLAGS } from '@angular/core/src/render3/interfaces/view';
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-owner-login',
+  templateUrl: './owner-login.component.html',
+  styleUrls: ['./owner-login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class OwnerLoginComponent implements OnInit {
+
   private userForm:FormGroup
   private user:any
   errorMessage:string
@@ -20,14 +21,12 @@ export class LoginComponent implements OnInit {
   msg;
   
   constructor(private builder:FormBuilder,private router : Router) { 
-  this.buildForm()
-  }
+    this.buildForm()
+    }
+
   ngOnInit() {
-    // this.flag=sessionStorage.getItem('flagMsg');
-    // if(this.flag==1){
-    //   this.msg="Please Login before Rent .....";
-    // }
   }
+
   buildForm() {
     this.userForm = this.builder.group({
      
@@ -49,7 +48,7 @@ export class LoginComponent implements OnInit {
     if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@08" ){
       
       sessionStorage.setItem('renter',this.userForm.controls['email'].value);
-      this.router.navigate(['./renter-dashboard']);
+      this.router.navigate(['./owner-dashboard']);
      // window.location.reload();
     }else
     {
@@ -59,28 +58,5 @@ export class LoginComponent implements OnInit {
     }
   
   }
-  saveData() {
-    this.user={
-    email:this.userForm.controls['email'].value,
-    password:this.userForm.controls['password'].value
-    }
-    
-   
-    
-    if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@07" ){
-      
-      
-      this.router.navigate(['./owner-dashboard']);
-      //window.location.reload();
-    }else
-    {
-      alert("please provide valid data to login")
-      this.userForm.reset();
-    }
-    
-  }
-    
-    
-  }
 
-
+}

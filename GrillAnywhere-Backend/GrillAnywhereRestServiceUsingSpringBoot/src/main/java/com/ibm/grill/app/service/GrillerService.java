@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 
 import com.ibm.grill.app.model.Griller;
+import com.ibm.grill.app.model.Purchase;
 import com.ibm.grill.app.repository.GrillerRepositoryMySQL;
+import com.ibm.grill.app.repository.PurchaseRepository;
 
 
 
@@ -20,6 +22,9 @@ public class GrillerService {
 
 	@Autowired
 	private GrillerRepositoryMySQL grillerRepository;
+	
+	@Autowired
+	private PurchaseRepository purchaseRepository;
 
 	public void add(Griller griller) {
 //		int empId = employees.size() + 1;	
@@ -42,9 +47,9 @@ public class GrillerService {
 		grillerRepository.deleteById(grillID);
 	}
 
-	public List<Griller> list() {		
+	public List<Griller> list(String grillerFlag) {		
 
-		return (List<Griller>) grillerRepository.findAll();
+		return (List<Griller>) grillerRepository.findByGrillerFlag(grillerFlag);	
 	}
 	
 	public List<Griller> listByGrillerType(String grillerType) {		
@@ -52,6 +57,7 @@ public class GrillerService {
 		return (List<Griller>) grillerRepository.findByGrillerType(grillerType);
 	}
 	
+//	
 
 	public List<Griller> findByLocation(String location)
 	{
@@ -61,5 +67,21 @@ public class GrillerService {
 //	{
 //		return grillerRepository.findByGrillerType(grillType);
 //	}
+
+	
+
+	public boolean addPurchase(Purchase purchase) {
+		// TODO Auto-generated method stub
+		purchaseRepository.save(purchase);
+		return true;
+	}
+
+	public List<Griller> listByRenter(String renter) {
+		// TODO Auto-generated method stub
+		return (List<Griller>) purchaseRepository.findByRenter(renter);	}
+
+	
+
+
 	
 }

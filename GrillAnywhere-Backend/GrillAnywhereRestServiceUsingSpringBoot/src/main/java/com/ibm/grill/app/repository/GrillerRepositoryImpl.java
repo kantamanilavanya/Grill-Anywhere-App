@@ -20,4 +20,27 @@ public class GrillerRepositoryImpl implements GrillerRepositoryCustom{
 					getResultList();
 	}
 
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<Griller> getGrillerByName(String grillerName) {
+//		return this.entityManager.
+//				createQuery("select e from Griller e where e.grill_name like '"+grillerName+"'").
+//					getResultList();
+//	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Griller> findAllbyGrillerFlag(String grillerFlag){
+		return this.entityManager.
+				createQuery("select e from Griller e where e.grillerFlag like '"+grillerFlag+"'").
+					getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Griller> getGrillerByRenter(String renter) {
+		return this.entityManager.
+				createQuery("select e.grillName,e.grillerType,e.grillerDescriptions,e.price,e.location,p.renter from Griller e INNER JOIN Purchase p on p.grillId=e.grillId where p.renter like '"+renter+"' ").
+					getResultList();
+	}
 }

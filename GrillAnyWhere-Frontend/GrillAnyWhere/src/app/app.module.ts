@@ -16,6 +16,11 @@ import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.compo
 import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
 import { FilterComponent } from './filter/filter.component';
 import { GrillerInfoComponent } from './griller-info/griller-info.component';
+import { PaymentComponent } from './payment/payment.component';
+import { OwnerLoginComponent } from './owner-login/owner-login.component';
+import { RenterLoginComponent } from './renter-login/renter-login.component';
+import { OwnerRegistrationComponent } from './owner-registration/owner-registration.component';
+import { RenterRegistrationComponent } from './renter-registration/renter-registration.component';
 
 //import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 //import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
@@ -41,7 +46,17 @@ import { GrillerInfoComponent } from './griller-info/griller-info.component';
     
     FilterComponent,
     
-    GrillerInfoComponent
+    GrillerInfoComponent,
+    
+    PaymentComponent,
+    
+    OwnerLoginComponent,
+    
+    RenterLoginComponent,
+    
+    OwnerRegistrationComponent,
+    
+    RenterRegistrationComponent
     //OwnerDashboardComponent
   ],
   imports: [

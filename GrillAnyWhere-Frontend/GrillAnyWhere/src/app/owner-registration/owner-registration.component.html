@@ -1,0 +1,131 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Services</a>
+          </li>
+          <li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </li>
+          <button type="button" class="btn btn-info" routerLink="/ownerLogin" >
+            Owner Login
+          </button>
+          <li>
+            &nbsp;&nbsp;
+          </li>
+          <button type="button" class="btn btn-info" routerLink="/renterLogin" >
+            Renter Login
+          </button>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card shadow-lg rounded border-danger mt-5 mb-5">
+          <div class="card-header text-center bg-dark text-white">
+            <h1>Register</h1>
+          </div>
+          <div class="card-body mb-5">
+            <div class="row">
+              <div class="col-md-7 border-right">
+                <!--registration modal-->
+  
+    <div *ngIf="errorMessage" class='error'>
+        {{errorMessage}}
+      </div>
+      <div class="container">
+        <div class="row justify-content-md-center">
+         <div class="card"  style="width: 40rem;">
+          
+            <div class="card-body">
+              <form [formGroup]="userForm" novalidate (submit)="save()">
+                <div class="formgroup">
+                  <label for="name">Name</label>
+                  <input type="text" formControlName="name" name="name" placeholder="User Name ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['name'].errors }" style="width: 340px;"/>
+                
+                  <div *ngIf="submitted && userForm.controls['name'].errors" class="invalid-feedback">
+                      <div *ngIf="userForm.controls['name'].errors.required">Name is required</div>
+                  </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="User Email ..." formControlName="email" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && userForm.controls['email'].errors }" style="width: 340px;"/>
+                    <div *ngIf="submitted && userForm.controls['email'].errors" class="invalid-feedback">
+                        <div *ngIf="userForm.controls['email'].errors.required">Email is required</div>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <input type="textarea" formControlName="address"
+                   name="address" placeholder="User Address ..."
+                    class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['address'].errors }" style="width: 340px;"/>
+                    <div *ngIf="submitted && userForm.controls['address'].errors" class="invalid-feedback">
+                        <div *ngIf="userForm.controls['address'].errors.required">Address is required</div>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                  <label for="phn_no">Contact Number</label>
+                  <input type="number" formControlName="phn_no" name="phn_no"
+                   placeholder="User Mobile No ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['phn_no'].errors }"style="width: 340px;" />
+                   <div *ngIf="submitted && userForm.controls['phn_no'].errors" class="invalid-feedback">
+                      <div *ngIf="userForm.controls['phn_no'].errors.required">Contact Number is required</div>
+                  </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="password">Password</label>
+                  <input type="password" formControlName="password" name="password" placeholder="Create a Password ..."
+                    class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['password'].errors }" style="width: 340px;"/>
+                    <div *ngIf="submitted && userForm.controls['password'].errors" class="invalid-feedback">
+                        <div *ngIf="userForm.controls['password'].errors.required">Set Password </div>
+                    </div>
+                </div>
+              
+                <div class="form-group">
+                <input type="submit" name="save" value="REGISTER" class='btn-primary button' />
+              </div>   
+                         
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+    
+              </div>
+              <div class="col-md-5">
+                <div>
+                  
+                  <div class="mt-5 h5">
+                    <h6>Already Have Account ... ?</h6>
+                    <a routerLink="/ownerLogin" class="btn btn-link"
+                      ><u>Continue to Sign In</u></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

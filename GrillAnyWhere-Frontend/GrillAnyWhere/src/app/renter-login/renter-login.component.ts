@@ -3,14 +3,14 @@ import { ActivatedRoute,Router } from "@angular/router";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoginService } from '../login.service';
 import { FLAGS } from '@angular/core/src/render3/interfaces/view';
-
-
+import { AlertService } from "../alert.service";
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-renter-login',
+  templateUrl: './renter-login.component.html',
+  styleUrls: ['./renter-login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RenterLoginComponent implements OnInit {
+
   private userForm:FormGroup
   private user:any
   errorMessage:string
@@ -19,15 +19,14 @@ export class LoginComponent implements OnInit {
   flag;
   msg;
   
-  constructor(private builder:FormBuilder,private router : Router) { 
-  this.buildForm()
-  }
+  constructor(private builder:FormBuilder,private router : Router,private service:AlertService) { 
+    this.buildForm()
+    }
+
   ngOnInit() {
-    // this.flag=sessionStorage.getItem('flagMsg');
-    // if(this.flag==1){
-    //   this.msg="Please Login before Rent .....";
-    // }
+    
   }
+
   buildForm() {
     this.userForm = this.builder.group({
      
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
     }
    
     
-    if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@08" ){
+    if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@07" ){
       
       sessionStorage.setItem('renter',this.userForm.controls['email'].value);
       this.router.navigate(['./renter-dashboard']);
@@ -59,28 +58,5 @@ export class LoginComponent implements OnInit {
     }
   
   }
-  saveData() {
-    this.user={
-    email:this.userForm.controls['email'].value,
-    password:this.userForm.controls['password'].value
-    }
-    
-   
-    
-    if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@07" ){
-      
-      
-      this.router.navigate(['./owner-dashboard']);
-      //window.location.reload();
-    }else
-    {
-      alert("please provide valid data to login")
-      this.userForm.reset();
-    }
-    
-  }
-    
-    
-  }
 
-
+}

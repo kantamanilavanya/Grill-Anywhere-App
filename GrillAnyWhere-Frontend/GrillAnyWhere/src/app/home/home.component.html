@@ -52,14 +52,14 @@
           <li>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </li>
-          <button type="button" class="btn btn-info" routerLink="/login" >
-            LOGIN
+          <button type="button" class="btn btn-info" routerLink="/ownerLogin" >
+            Owner Login
           </button>
           <li>
             &nbsp;&nbsp;
           </li>
-          <button type="button" class="btn btn-info" routerLink="/register" >
-            REGISTER
+          <button type="button" class="btn btn-info" routerLink="/renterLogin" >
+            Renter Login
           </button>
         </ul>
       </div>
@@ -178,7 +178,7 @@
                           
                           <li><a href="#" data-tip="Add to Cart" routerLink="/login"><i class="fa fa-shopping-cart"></i></a></li>
                       </ul>
-                      <a class="add-to-cart" href="" routerLink="/login" (click)="setFlag()">Rent Now</a>
+                      <a class="add-to-cart" href="" routerLink="/renterLogin" (click)="setFlag()">Rent Now</a>
                   </div>
                   <div class="product-content">
                       <h3 class="title"><a href="#">{{success.grillName}}</a></h3>
@@ -258,8 +258,8 @@
           
           
           <div class="modal-footer">
-              <button type="submit" class="btn btn-lg btn-block btn-secondary">ADD TO CART</button>
-              <button type="submit" id="rentBtn" class="btn btn-lg btn-block btn-primary" routerLink="/login" (click)="rentFunc()">RENT NOW</button>
+              <!-- <button type="submit" class="btn btn-lg btn-block btn-secondary">ADD TO CART</button> -->
+              <button type="submit" id="rentBtn" class="btn btn-lg btn-block btn-primary" routerLink="/renterLogin" (click)="rentFunc()">RENT NOW</button>
           </div>
         </div>
       </div>

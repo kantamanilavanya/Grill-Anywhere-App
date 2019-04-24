@@ -26,6 +26,7 @@ export class OwnerDashboardComponent implements OnInit {
   private grill:any
   byType
   angular: any;
+  private delConfirm:boolean;
 
   constructor(private builder:FormBuilder,private service:GrillerService,private router : Router,private httpClient:HttpClient) { 
     this.buildForm()
@@ -130,9 +131,13 @@ export class OwnerDashboardComponent implements OnInit {
   }
 
   delete(grillId){
-    this.service.deleteUser(grillId,data=>{
-     this.onloadFun()
-    })
+    this.delConfirm=confirm("Are You Sure Want to Delete This .... ?");
+
+    if(this.delConfirm==true){
+      this.service.deleteUser(grillId,data=>{
+      this.onloadFun()
+      })
+  }
   }
 
   onloadFun(){

@@ -73,8 +73,9 @@
           <option value="Chennai">Chennai</option>
           <option value="Mumbai">Mumbai</option>
           <option value="Hyderabad">Hyderabad</option>
-        </select>
+        </select> &nbsp;&nbsp;&nbsp;
     <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+    
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -88,12 +89,19 @@
         <li class="nav-item active">
           <a href="#allProducts" data-toggle="tab" class="nav-link">All Products</a>
         </li>
-        <li class="nav-item">
+
+        <select #dropDown2 id="dropDown-input2" (change)="searchBarFilter(dropDown2.value)">
+            <option>Choose type</option>
+            <option value="AutomaticGriller">Automatic Griller</option>
+            <option value="ManualGriller">Manual Griller</option>
+            
+          </select>
+        <!-- <li class="nav-item">
           <a href="#" routerLink="/manual" class="nav-link">Manual</a>
         </li>
         <li class="nav-item">
           <a href="#" routerLink="/automatic" class="nav-link">Automatic</a>
-        </li>
+        </li> -->
 
         <li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -104,7 +112,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;">
               <span class="fa fa-user"></span> 
-              <strong>Welcome User</strong>
+              <strong>Welcome {{msg}}</strong>
               <span class="glyphicon glyphicon-chevron-down"></span>
             </a>
             <ul class="dropdown-menu">
@@ -116,18 +124,18 @@
                     </div>
 
                     <div class="col-lg-8">
-                      <p class="text-left"><strong>username</strong></p>
+                      <p class="text-left"><strong>{{msg}}</strong></p>
                       <i class="fa fa-edit"></i>
-                      <a href="#profile" data-toggle="tab" class="text-left small" style="text-decoration: none;">Edit
+                      <a style="cursor: pointer;" (click)="toggleEditProfile()">Edit
                         Profile</a>
                       <br /><br />
                       <hr>
-                      <p class="text-left">
+                      <!-- <p class="text-left">
                         <a href="#" class="" style="text-decoration: none;">My Order</a>
                       </p>
                       <p class="text-left">
                         <a href="#" class="" style="text-decoration: none;">My Cart</a>
-                      </p>
+                      </p> -->
                     </div>
                   </div>
                 </div>
@@ -160,7 +168,7 @@
 
   <div class="tab-content">
     <!-- All products -->
-    <div id="allProducts" class="container tab-pane in active">
+    <div *ngIf="!showEditProfile" id="allProducts" class="container tab-pane in active">
       <br /><br />
       <div class="row">
         <span id="grillerList" *ngFor="let success of grillers">
@@ -174,7 +182,7 @@
                 </a>
                 <ul class="social">
                   <li><a data-tip="Quick View"
-                      (click)="grillerInfo(success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
+                      (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
                       href="#grillerInfoModal" data-toggle="tab"><i class="fa fa-eye"></i></a></li>
 
                   <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
@@ -193,8 +201,28 @@
     </div>
 
     <!-- My Profile -->
-    <div id="profile" class="container tab-pane">
-      Edit my profile details
+    <div  *ngIf="showEditProfile">
+      my order
+      <div class="container" *ngFor="let success1 of grillers1">
+        <div class="row">
+          <div class="col-md-4">
+              <img src="assets/images/{{success1.grillImage}}">
+          </div>
+          <div class="col-md-2">
+            <!-- <p>|</p>
+            <p>|</p>
+            <p>|</p>
+            <p>|</p> -->
+          </div>
+          <div class="col-md-6">
+            <p> {{success1.grillName}}</p>
+            <p>{{success1.grillerType}}</p>
+            <p>{{success1.price}}</p>
+            <p>{{success1.grillerDescriptions}}</p>
+          </div>
+        </div>         
+      </div>
+      
     </div>
 
     <!-- Modal -->
@@ -223,16 +251,77 @@
             </div>
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-lg btn-block btn-secondary">ADD TO CART</button>
-                <button type="submit" id="rentBtn" class="btn btn-lg btn-block btn-primary" routerLink="/login"
-                  (click)="rentFunc()">RENT NOW</button>
+                
+                <button id="rentBtn" class="btn btn-lg btn-block btn-primary" (click)="rentGriller(grillId,grillName,price,grillerDescriptions,grillerType,location,grillImage)">RENT NOW</button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+   
+<!-- payment -->
+    <div id="payment" class="container tab-pane">
+      <!-- <div class="container">
+        <div class="row justify-content-md-center">
+         <div class="card"  style="width: 40rem;">
+          <h2 class="card-header">Register</h2>  
+            <div class="card-body">
+              <form [formGroup]="userForm" novalidate (submit)="pay()">
+                <div class="formgroup">
+                  <label for="name">Your Name</label>
+                  <input type="text" formControlName="name" name="name" placeholder="User Name ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['name'].errors }"/>
+                
+                  <div *ngIf="submitted && userForm.controls['name'].errors" class="invalid-feedback">
+                      <div *ngIf="userForm.controls['name'].errors.required">Name is required</div>
+                  </div>
+                </div>
+    
+               
+    
+                <div class="form-group">
+                  <label for="address">Landmark</label>
+                  <input type="textarea" formControlName="address"
+                   name="address" placeholder="User Address ..."
+                    class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['address'].errors }" />
+                    <div *ngIf="submitted && userForm.controls['address'].errors" class="invalid-feedback">
+                        <div *ngIf="userForm.controls['address'].errors.required">Landmark is required</div>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                  <label for="phn_no">Contact Number</label>
+                  <input type="number" formControlName="phn_no" name="phn_no"
+                   placeholder="User Mobile No ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['phn_no'].errors }" />
+                   <div *ngIf="submitted && userForm.controls['phn_no'].errors" class="invalid-feedback">
+                      <div *ngIf="userForm.controls['phn_no'].errors.required">Contact Number is required</div>
+                  </div>
+                </div>
+    
+                
+              
+                <div class="form-group">
+                <input type="submit" name="save" value="Continue" class='btn-primary button' />
+              </div>   
+                         
+              </form>
+            </div>
+          </div>
+      </div> -->
+    
+  
 
+      <button type="submit" class="btn btn-lg btn-block btn-secondary" (click)="rentGriller(success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)">Continue</button>
+               
+    </div>
+
+    <div id="myCart" class="container tab-pane">
+      <div class="row">
+        <div class="col-md-6">
+          
+        </div>
+      </div>
+    </div>
     
   </div>
 

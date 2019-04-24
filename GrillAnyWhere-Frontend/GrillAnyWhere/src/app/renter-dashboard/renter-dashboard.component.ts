@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute,Router, RouterLink } from "@angular/router";
 import * as $ from 'jquery'
 import { GrillerService } from "../griller.service";
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class RenterDashboardComponent implements OnInit {
   private userForm:FormGroup
   msg;
   private grillers:any[];
+
+  private grillers1:any[];
   grillName;
   location;
   grillerType;
@@ -22,14 +25,19 @@ export class RenterDashboardComponent implements OnInit {
   grillerDescriptions;
   grillImage
   byType;
+  grillId
 
+  showEditProfile: boolean;
+  showAllProduct: boolean;
   //private userForm:FormGroup
   private user:any
+  private purchase:any
+  renter
 
-  constructor(private route:ActivatedRoute,private service:GrillerService,private router: Router) { }
+  constructor(private route:ActivatedRoute,private service:GrillerService,private router: Router,private httpClient:HttpClient) { }
 
   ngOnInit() {
-    this.msg=sessionStorage.getItem('rentername');
+    this.msg=sessionStorage.getItem('renter');
     
    this.onloadFun();
     
@@ -59,7 +67,7 @@ export class RenterDashboardComponent implements OnInit {
     });
   }
 
-  grillerInfo(grillName,price,grillerDescriptions,grillerType,location,grillImage){
+  grillerInfo(grillId,grillName,price,grillerDescriptions,grillerType,location,grillImage){
     console.log("into grillerInfo"+grillName+","+price+","+grillerDescriptions+","+grillerType+","+location);
 
     
@@ -69,6 +77,9 @@ export class RenterDashboardComponent implements OnInit {
     this.grillerDescriptions=grillerDescriptions;
     this.price=price;
     this.grillImage=grillImage
+    this.grillId=grillId
+
+    
   }
 
   rentFunc(){
@@ -106,6 +117,26 @@ export class RenterDashboardComponent implements OnInit {
     }
     
 }
+
+
+searchBarFilter(event){
+  //var text = document.getElementsByName("searchbar-input").value;
+  console.log("in searchBar: "+event);
+  
+  this.byType=event;
+  this.user={
+    grillerType:this.byType
+    }
+    
+    if(1){
+      
+     this.service.findByGrillerType(this.user,success=>{
+       this.grillers=success;
+     });
+    }
+  
+  }
+
   logout(){
     sessionStorage.removeItem('rentername');
     this.router.navigate(['/'])
@@ -113,4 +144,67 @@ export class RenterDashboardComponent implements OnInit {
    sessionStorage.clear();
   }
 
+  toggleEditProfile(){
+    this.showEditProfile = !this.showEditProfile;
+    //this.showAllProduct = !this.showAllProduct;
+    console.log(this.showEditProfile+"" +!this.showAllProduct);
+  }
+
+  toggleAllProduct(){
+    this.showEditProfile = !this.showEditProfile;
+    this.showAllProduct = !this.showAllProduct;
+    console.log(!this.showEditProfile+"" +this.showAllProduct);
+
+    this.renter=sessionStorage.getItem('renter');
+    this.user={
+      grillerType:this.renter
+      }
+      
+      if(1){
+        
+       this.service.findGrillerByRenter(this.user,success1=>{
+         this.grillers1=success1;
+         console.log(this.grillers1);
+       });
+      }
+  }
+
+  rentGriller(grillId,grillName,price,grillerDescriptions,grillerType,location,grillImage){
+    console.log("in rentGrill");
+    this.grillName=grillName;
+    this.location=location;
+    this.grillerType=grillerType;
+    this.grillerDescriptions=grillerDescriptions;
+    this.price=price;
+    this.grillImage=grillImage;
+    this.grillId=grillId;
+
+    this.renter=sessionStorage.getItem('renter');
+    sessionStorage.setItem('grillId',this.grillId);
+    sessionStorage.setItem('grillerPrice',this.price);
+    console.log("in rentGriller id "+this.grillId);
+
+    this.router.navigate(['./renter-dashboard/payment']);
+    // this.purchase={
+    //   grillId: this.grillId,
+    //   renter: this.renter
+    // }
+    // // Add a new User 
+    // this.service.buildAndCreatePurchase({ 
+    //   grillId: this.purchase.grillId,
+    //   renter: this.purchase.renter
+     
+    // },(err)=>{
+      
+    //   if(err! =null){
+    //     console.log('Unable to Process request')
+       
+    //   }
+    //   else{
+    //     console.log("success");
+    //     //this.router.navigate(['./renter-dashboard']);
+    //     window.location.reload();
+    //   }
+    // })
+  }
 }

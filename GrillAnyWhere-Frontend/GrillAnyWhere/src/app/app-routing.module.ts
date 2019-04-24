@@ -4,12 +4,16 @@ import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.compo
 import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
+//import {LoginComponent} from "./login/login.component";
 import { RegistrationComponent } from "./registration/registration.component";
 import { ManualComponent} from "./manual/manual.component";
 import { AutomaticComponent} from "./automatic/automatic.component";
 import { FilterComponent} from "./filter/filter.component";
-import { GrillerInfoComponent } from "./griller-info/griller-info.component";
+import { PaymentComponent } from "./payment/payment.component";
+import { OwnerLoginComponent } from "./owner-login/owner-login.component";
+import { RenterLoginComponent } from "./renter-login/renter-login.component";
+import { OwnerRegistrationComponent } from "./owner-registration/owner-registration.component";
+import { RenterRegistrationComponent } from "./renter-registration/renter-registration.component";
 
 const routes: Routes = [
   {
@@ -29,8 +33,12 @@ const routes: Routes = [
     component: AutomaticComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'ownerLogin',
+    component: OwnerLoginComponent
+  },
+  {
+    path: 'renterLogin',
+    component: RenterLoginComponent
   },
   {
     path: 'renter-dashboard',
@@ -45,8 +53,16 @@ const routes: Routes = [
     component: FilterComponent
   },
   {
-    path: 'renter-dashboard/grillInfo',
-    component: GrillerInfoComponent
+    path: 'renter-dashboard/payment',
+    component: PaymentComponent
+  },
+  {
+    path: 'ownerRegistration',
+    component: OwnerRegistrationComponent
+  },
+  {
+    path: 'renterRegistration',
+    component: RenterRegistrationComponent
   },
   {
     path: '**',
@@ -60,4 +76,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponent=[HomeComponent,OwnerDashboardComponent,NotFoundComponent,RegistrationComponent,LoginComponent ]
+export const routingComponent=[HomeComponent,OwnerDashboardComponent,NotFoundComponent,OwnerLoginComponent,RenterLoginComponent]

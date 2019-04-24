@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Services</a>
+          </li>
+          <li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </li>
+          <button type="button" class="btn btn-info" routerLink="/ownerLogin" >
+            Owner Login
+          </button>
+          <li>
+            &nbsp;&nbsp;
+          </li>
+          <button type="button" class="btn btn-info" routerLink="/renterLogin" >
+            Renter Login
+          </button>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card shadow-lg rounded border-danger mt-5 mb-5">
+          <div class="card-header text-center bg-dark text-white">
+            <h1>Login</h1>
+          </div>
+          <div class="card-body mb-5">
+            <div class="row">
+              <div class="col-md-7 border-right">
+                
+                  <form [formGroup]="userForm" novalidate (submit)="save()">
+
+                      <div>
+                        
+                        <input type="text" formControlName="email" name="email"
+                         placeholder="Owner Email Id ..." class='form-control input ' style="width: 340px;" />
+                        <span *ngIf="userForm.controls['email'].errors">
+                          <span class='text-danger' *ngIf="userForm.controls['email'].errors.required">
+                            * Email is Required
+                          </span>
+                          <span class='text-danger' *ngIf="userForm.controls['email'].errors.email">
+                            Please specify your register Email
+                          </span>
+                        </span>
+                      </div><br>
+          
+          
+          
+                      <div>
+                        <input type="password" formControlName="password" name="password" placeholder="Enter your Password ..."
+                          class='form-control input' style="width: 340px;" />
+                        <span *ngIf="userForm.status =='INVALID' ">
+                          <span class='text-danger' *ngIf="userForm.controls['password'].errors">
+                            <span *ngIf="userForm.controls['password'].errors.required">
+                              * Please enter Password
+                            </span>
+                          </span>
+                        </span>
+                      </div><br>
+          
+                      <div class="col-md-6 offset-md-3">
+                          <input
+                            type="submit"
+                            class="btn btn-outline-primary btn-lg btn-block shadow-sm"
+                            value="Login"
+                            id="login"                            
+                          />
+                      </div>
+                    </form>
+              </div>
+              <div class="col-md-5">
+                <div>
+                  
+                  <div class="mt-5 h5">
+                    <h6>New User ... ?</h6>
+                    <a routerLink="/renterRegistration" class="btn btn-link"
+                      ><u>Continue SignUp with email</u></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

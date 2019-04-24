@@ -43,6 +43,7 @@ import com.ibm.grill.app.exception.LoginException;
 import com.ibm.grill.app.exception.ValidationException;
 import com.ibm.grill.app.model.ErrorDetails;
 import com.ibm.grill.app.model.Griller;
+import com.ibm.grill.app.model.Purchase;
 import com.ibm.grill.app.service.GrillerService;
 
 /**
@@ -52,24 +53,26 @@ import com.ibm.grill.app.service.GrillerService;
 @RequestMapping(value = "/griller")
 public class GrillerController {
 
-	@Autowired
-	@Qualifier("grillerValidator")
-	private Validator validator;
+	
+	
+//	@Autowired
+//	@Qualifier("grillerValidator")
+//	private Validator validator;
 
 	@Autowired
 	GrillerService grillService;
 
-	@InitBinder
-	private void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
-	}
+//	@InitBinder
+//	private void initBinder(WebDataBinder binder) {
+//		binder.setValidator(validator);
+//	}
 	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Griller> UploadFile(@RequestPart MultipartFile file, WebRequest request,
 			@ModelAttribute Griller griller, HttpSession session, BindingResult bindingResult)
 			throws IOException, URISyntaxException, ValidationException {
 
-		validator.validate(griller, bindingResult);
+		//validator.validate(griller, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 			throw new ValidationException(bindingResult);
@@ -81,6 +84,7 @@ public class GrillerController {
 		return ResponseEntity.created(locationUri).build();
 		// Upload Logic
 	}
+	
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("/byGrillerType/{grillerType}")
@@ -89,15 +93,18 @@ public class GrillerController {
 		return new ResponseEntity<List<Griller>>(grillService.listByGrillerType(grillerType), HttpStatus.OK);
 	}
 	
+	
+	
 	@CrossOrigin(origins = "*")
 	@GetMapping
 	public HttpEntity<List<Griller>> listGrillers(HttpSession session) {
 
-		return new ResponseEntity<List<Griller>>(grillService.list(), HttpStatus.OK);
+		String grillerFlag="A";
+		return new ResponseEntity<List<Griller>>(grillService.list(grillerFlag), HttpStatus.OK);
 	}
 
 	@CrossOrigin(origins = "*")
-@GetMapping("byID/{id}")
+	@GetMapping("byID/{id}")
 	public HttpEntity<Griller> getGriller(@PathVariable int id, HttpSession session) {
 
 		return new ResponseEntity<Griller>((Griller)grillService.get(id), HttpStatus.OK);
@@ -109,7 +116,7 @@ public class GrillerController {
 			@ModelAttribute Griller griller, @PathVariable int id,
 			 HttpSession session, BindingResult bindingResult) throws ValidationException {
 
-		validator.validate(griller, bindingResult);
+		//validator.validate(griller, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 			throw new ValidationException(bindingResult);
@@ -122,8 +129,10 @@ public class GrillerController {
 		return new ResponseEntity<String>("{\"Status\":\"Success\"}", HttpStatus.OK);
 //		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
 	}
+	
 
-	@CrossOrigin(origins = "*")
+	
+		@CrossOrigin(origins = "*")
 	@DeleteMapping("/{id}")
 	public HttpEntity<String> deleteGriller(@PathVariable int id, HttpSession session) {
 
@@ -157,11 +166,25 @@ public class GrillerController {
 		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.findByLocation(location), HttpStatus.OK);
 	}
 	
-//	@CrossOrigin(origins = "*")
-//	@GetMapping("/byGrillerType/{grillerType}")
-//	public HttpEntity<List<Griller>> getGriller(@PathVariable String grillerType , HttpSession session) {
-//
-//		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.findByGrillerType(grillerType), HttpStatus.OK);
-//	}
 
+	//add purchase
+	@CrossOrigin(origins = "*")
+	@PostMapping("/purchase")
+    public ResponseEntity addPurchase(@RequestBody Purchase purchase){
+        boolean flag = grillService.addPurchase(purchase);
+       
+        if(!flag) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+	
+	//list by renter
+	@CrossOrigin(origins = "*")
+	@GetMapping("/byRenter/{renter}")
+	public HttpEntity<List<Griller>> getByRenter(@PathVariable String renter, HttpSession session) {
+
+		return new ResponseEntity<List<Griller>>(grillService.listByRenter(renter), HttpStatus.OK);
+	}
+	
 }

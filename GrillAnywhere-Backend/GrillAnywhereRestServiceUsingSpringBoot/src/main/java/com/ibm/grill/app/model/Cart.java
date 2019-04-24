@@ -4,12 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
 @Table
-public class Griller {
+public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int grillId;
@@ -19,26 +18,8 @@ public class Griller {
 	private Double price;
 	private String location;
 	private String grillerFlag="A";
-	private String owner;
-	private String renter;
 
 	
-	public String getOwner() {
-		return owner;
-	}
-
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
-
-	public String getRenter() {
-		return renter;
-	}
-
-	public void setRenter(String renter) {
-		this.renter = renter;
-	}
-
 	private String grillImage;
 	 
 	public int getGrillId() {

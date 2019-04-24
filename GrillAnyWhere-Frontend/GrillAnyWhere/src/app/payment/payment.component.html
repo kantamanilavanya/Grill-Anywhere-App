@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row justify-content-md-center">
+     <div class="card"  style="width: 40rem;">
+      <h2 class="card-header"></h2>  
+        <div class="card-body">
+          <form [formGroup]="userForm" novalidate (submit)="save()">
+            <div class="formgroup">
+              <label for="name">Delivary to</label>
+              <input type="text" formControlName="name" name="name" placeholder="User Name ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['name'].errors }"/>
+            
+              <div *ngIf="submitted && userForm.controls['name'].errors" class="invalid-feedback">
+                  <div *ngIf="userForm.controls['name'].errors.required">Name is required</div>
+              </div>
+            </div>
+
+           
+
+            <div class="form-group">
+              <label for="address">Landmark</label>
+              <input type="textarea" formControlName="address"
+               name="address" placeholder="User Address ..."
+                class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['address'].errors }" />
+                <div *ngIf="submitted && userForm.controls['address'].errors" class="invalid-feedback">
+                    <div *ngIf="userForm.controls['address'].errors.required">Address is required</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phn_no">Contact Number</label>
+              <input type="number" formControlName="phn_no" name="phn_no"
+               placeholder="User Mobile No ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['phn_no'].errors }" />
+               <div *ngIf="submitted && userForm.controls['phn_no'].errors" class="invalid-feedback">
+                  <div *ngIf="userForm.controls['phn_no'].errors.required">Contact Number is required</div>
+              </div>
+            </div>
+
+           <div class="form-group">
+              <select #period id="timePeriods" (change)="periodDropDown(period.value)">
+                  <option>Select Period</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  
+                </select>
+           </div>
+
+           <div *ngIf="showAmount" class="form-group">
+             <label>Total Amount : </label>><label>{{totalAmount}}</label>
+           </div>
+           
+            <div class="form-group">
+            <input type="submit" name="save" value="Pay and Confirm" class='btn-primary button' />
+          </div>   
+                    
+          </form>
+        </div>
+      </div>
+  </div>
+</div>

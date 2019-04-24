@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     $(document).ready(() => {
-      $('#loginId').click(()=>{
-        $('#popLogin').hide();
-        //this.router.navigate(['./renter-dashboard']);
-       // location.reload();
+      $('#rentBtn').click(()=>{
+        $('#grillerInfoModal').hide();
+        
+        location.reload();
       });
     });
 
@@ -105,8 +105,8 @@ export class HomeComponent implements OnInit {
   rentFunc(){
     console.log("into rent func");
     this.setFlag();
-    window.location.reload();
-     this.router.navigate(['./login']);
+    
+     this.router.navigate(['./renterLogin']);
      
   }
 
