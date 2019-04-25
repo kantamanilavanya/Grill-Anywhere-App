@@ -1,42 +1,3 @@
-<!-- <div>
-  <img src="assets/image/icon3.png" style="width:1500px;height:500px;margin-left: 50px" />
-  <br/>
-  <div class="scroll">
-  <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-  <span class="img-move">
-    <span class="img-move">
-      <h4 class="font-weight-lighter text-center text-warning">Gas Griller</h4>
-      <img src="assets/image/icon1.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Sirlion Griller Steaks</h4>
-        <img src="assets/image/sirloin.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Imarflex ICG-250T Griller</h4>
-        <img src="assets/image/icon6.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Pigeon Sandwich Griller 700 Watts</h4>
-        <img src="assets/image/icon5.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Sandwich Griller SG-JUMBO</h4>
-        <img src="assets/image/icon4.jpg" style="width:400px;height:200px">
-    </span>
-    &nbsp;
-    <span class="img-move">
-        <h4 class="font-weight-lighter text-center text-warning">Emile Henry Flame Fish Griller Slate</h4>
-        <img src="assets/image/icon.jpg" style="width:400px;height:200px">
-    </span>
-  </span>
-  </marquee>
-  </div>
-</div> -->
 
 
 
@@ -58,8 +19,17 @@
 
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)">
+          <option>Choose City</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Mumbai">Mumbai</option>
+        </select>
     <div class="container">
       <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+      
+      
+      
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -68,24 +38,26 @@
           <li class="nav-item active">
             <a href="index.html" class="nav-link">Home</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="about.html" class="nav-link">About Us</a>
           </li>
           <li class="nav-item">
             <a href="services.html" class="nav-link">Services</a>
+          </li> -->
+          <li class="searchbar">
+            <input type="text" #search id="searchbar-input" (keyup)="searchBarFilter(search.value)">
+            <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
+            <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
           </li>
           <li>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </li>
           <button type="button" class="btn btn-info" routerLink="/login" >
-            LOGIN
+           Login/Register
           </button>
           <li>
             &nbsp;&nbsp;
-          </li>
-          <button type="button" class="btn btn-info" routerLink="/register" >
-            REGISTER
-          </button>
+
         </ul>
       </div>
     </div>
@@ -147,7 +119,7 @@
       <div class="row">
         <div class="col-md-4 mb-4 text-center">
           <i class="fas fa-cog fa-3x mb-2"></i>
-          <h3>Explore on Griler</h3>
+          <h3>Explore on Grilers</h3>
           <p>Explores on our verious types of griller</p>
         </div>
         <div class="col-md-4 mb-4 text-center">
@@ -185,59 +157,110 @@
  
 
   <!-- PHOTO GALLERY -->
-  <section id="gallery" class="py-5">
+  <div class="container">
+      <h1 class="text-center">Photo Gallery</h1>
+      <p class="text-center">Check out our Grillers</p>
+      <div class="row">
+          <span class="grillerList" *ngFor="let success of grillers">
+          <div class="col-md-6">
+              <div class="product-grid2">
+                  <div class="product-image2">
+                      <a href="#">
+                          <!-- <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap"> -->
+                          <img class="pic-1" src="assets/images/{{success.grillImage}}" >
+                          <img class="pic-2" src="assets/images/{{success.grillImage}}">
+                      </a>
+                      <ul class="social">
+                          <li><a href="#" data-tip="Quick View" (click)="grillerInfo(success.grillImage,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location)" data-toggle="modal" data-target="#grillerInfoModal"><i class="fa fa-eye"></i></a></li>
+                          
+                          <li></li>
+                      </ul>
+                      <a class="add-to-cart" href="" routerLink="/renterLogin" (click)="setFlag()">Rent Now</a>
+                  </div>
+                  <div class="product-content">
+                      <h3 class="title"><a href="#">{{success.grillName}}</a></h3>
+                      <span class="price">Rent (per Day) : {{success.price}}</span>
+                  </div>
+              </div>
+          </div>
+        </span>
+          
+      </div>
+  </div>
+  <hr>
+  
+
+
+  <!-- <section id="gallery" class="py-5">
     <div class="container">
       <h1 class="text-center">Photo Gallery</h1>
       <p class="text-center">Check out our Grillers</p>
-      <div class="row mb-4">
-        <div class="col-md-4">
-          <a href="https://images.naptol.com/usr/local/csp/staticContent/product_images/horizontal/375x375/Food-Chopper-Grill-Slicer-04.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="562"
-                  data-width="562">
-                <img src="https://images.naptol.com/usr/local/csp/staticContent/product_images/horizontal/375x375/Food-Chopper-Grill-Slicer-04.jpg" alt="" class="img-fluid" />
-            </a>
-              </div>
-
-        <div class="col-md-4">
-          <a href="https://cdn3.bigcommerce.com/s-1d158t7j/product_images/uploaded_images/spirit2.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="561"
-            data-width="561">
-            <img src="https://cdn3.bigcommerce.com/s-1d158t7j/product_images/uploaded_images/spirit2.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-
-        <div class="col-md-4">
-          <a href="https://www.prestigesmartkitchen.com/media/catalog/product/cache/1/image/500x500/9df78eab33525d08d6e5fb8d27136e95/s/k/sku-700-ppbb0.2.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="562"
-            data-width="562">
-            <img src="https://www.prestigesmartkitchen.com/media/catalog/product/cache/1/image/500x500/9df78eab33525d08d6e5fb8d27136e95/s/k/sku-700-ppbb0.2.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
-
-      <div class="row mb-4">
-        <div class="col-md-4">
-          <a href="https://stevie-wonder.com/wp-content/uploads/2018/07/Smart-Healthy-XL-Indoor-Electric-Grill-EGL-6501-By-Elite-Platinum--e1531974627789.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="563"
-            data-width="563">
-            <img src="https://stevie-wonder.com/wp-content/uploads/2018/07/Smart-Healthy-XL-Indoor-Electric-Grill-EGL-6501-By-Elite-Platinum--e1531974627789.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-
-        <div class="col-md-4">
-          <a href="https://azcd.harveynorman.com.au/media/catalog/product/cache/21/small_image/400x225/9df78eab33525d08d6e5fb8d27136e95/3/2/327_5.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="564"
-            data-width="564">
-            <img src="https://azcd.harveynorman.com.au/media/catalog/product/cache/21/small_image/400x225/9df78eab33525d08d6e5fb8d27136e95/3/2/327_5.jpg" alt="" class="img-fluid">
-          </a>
-        </div>
-
-        <div class="col-md-4">
-          <a href="https://thegoodguys.sirv.com/products/50041181/50041181_469095.PNG?scale.height=505&scale.width=773&canvas.height=505&canvas.width=773&canvas.opacity=0&format=png&png.optimize=true" data-toggle="lightbox" data-gallery="img-gallery" data-height="565"
-            data-width="565">
-            <img src="https://thegoodguys.sirv.com/products/50041181/50041181_469095.PNG?scale.height=505&scale.width=773&canvas.height=505&canvas.width=773&canvas.opacity=0&format=png&png.optimize=true" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
+      <div id="menu" class="card-columns" >
+          <ul>
+            <div class="card-columns ">
+            <li *ngFor="let success of grillers">
+                <div class="column">
+                    <div class="card" style="width: 18rem;height:28rem">
+                        <div class="card-body">
+                      <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap">
+                      
+                        <hr>
+                        <p class="card-text">{{success.grillName}}</p>
+                        <hr>
+                        <p>Starts From {{success.price}}$</p>
+                        <hr>
+                        <a href="#" (click)="grillerInfo(success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location)"  data-toggle="modal" data-target="#grillerInfoModal">More Info</a>
+                      </div>
+                    </div>
+                  </div>
+            </li>
+          </div>
+            </ul>
+          </div>
+      
     </div>
-  </section>
+  </section> -->
 
-  <!-- NEWSLETTER -->
+  <!-- Modal -->
+<div id="grillerInfoModal" class="modal" role="dialog" >
+    
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            
+          <div class="modal-header bg-info">
+            <h3 class="offset-sm-4 text-warning">Griller Information</h3>
+          </div>
+          
+          <div class="modal-body">
+             <div class="row">
+               <div class="col-sm-6">
+                  <img class="card-img-top" src="assets/images/{{grillImage}}" alt="Card image cap">
+               </div>
+               <div class="col-sm-6">
+                 <div class="card">
+                   <div class="card-header">
+                      <h3>{{grillName}}</h3>
+                   </div>
+                   <div class="card-body">
+                     <br/>
+                     <p>Type : {{grillerType}}</p>
+                     <p>Rent (per hr.) : {{price}}</p>
+                     <p>Available in : {{location}}</p>
+                     <p>Description :  {{grillerDescriptions}}</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+          </div>
+          
+          
+          <div class="modal-footer">
+              <!-- <button type="submit" class="btn btn-lg btn-block btn-secondary">ADD TO CART</button> -->
+              <button type="submit" id="rentBtn" class="btn btn-lg btn-block btn-primary" routerLink="/renterLogin" (click)="rentFunc()">RENT NOW</button>
+          </div>
+        </div>
+      </div>
+  </div>
   
 
   <!-- FOOTER -->

@@ -1,294 +1,274 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
- 
-    <a class="navbar-brand" href="#">OWNER DASHBOARD</a>
-    <div class="input-group col-sm-2">
-   
-      </div>
-   
-   </nav>
-   <div class="row">
-    <div class="menu1">
-      <img src="assets/image/user-icon.png" width="100px" height="100px" /><br /><br />
-   
-      <div></div>
-      <ul class="list-group">
-        <li class="list-group-item bg-light">
-   
-          <a href="#" class="">My Profile</a>
-   
+
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container">
+      &nbsp;&nbsp;&nbsp;
+    <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+    
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+          <li class="searchbar">
+              <input type="text" #search id="searchbar-input" (keyup)="searchBarFilter(search.value)">
+              <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
+              <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
+            </li>
+        <li class="nav-item active">
+          <a style="cursor: pointer;" class="nav-link" (click)="toggleAllGriller()">All Products</a>
         </li>
-        <li class="list-group-item bg-light">
-   
-            <a  href="#" data-toggle="modal" data-target="#myModal">Add Griller</a>
-   
+
+       
+        <!-- <li class="nav-item">
+          <a href="#" routerLink="/manual" class="nav-link">Manual</a>
         </li>
-   
-        <li class="list-group-item bg-light">
-   
-          <a href="#" class="">Sign Out</a>
-   
+        <li class="nav-item">
+          <a href="#" routerLink="/automatic" class="nav-link">Automatic</a>
+        </li> -->
+
+        <li>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </li>
-      </ul>
-   
-    </div>
-   
-   
-   
-    <body class="container"><div id="menu" class="card-columns" >
-      <ul>
-        <div class="card-columns ">
-        <li *ngFor="let success of grillers">
-            <div class="col-4-lg">
-            <div class="column div ">
-                <div class="card border-white" style="width: 15rem;">
-                  
-                    <button class="btn btn-info btn-sm" (click)="storeId(success.grillId)" data-toggle="modal" data-target="#myModal2"   >
-                        Edit
-                        </button> 
-                        <input type="hidden" name="grillId" value="{{success.grillId}}" ng-model="success.grillId"/>
-                  
-                  <button type="button" class="close btn btn-info btn-sm" aria-label="Close" (click)="delete(success.grillId)" >
-                    
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-               
-                
-                    <img class="card-img-top image" src="assets/images/{{success.grillImage}}" alt="Card image cap">
-                    <span class="card-text "><h5>{{success.grillName}}</h5></span>
-                   <span class="card-text text-primary">{{success.location}}</span>
-   
-                    <div>
-                      <span class="fa fa-star checked btn-success btn-sm">3.5</span>&nbsp;
-                      <span class="text-primary">.</span>&nbsp;
-                      <span class="text-primary">Min 4 hrs</span>&nbsp;
-                      <span class="text-primary">.</span>&nbsp;
-                          <span class="text-primary">{{success.price}}$</span>
-   
-   
-                        </div>
+
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;">
+              <span class="fa fa-user"></span> 
+              <strong>Welcome {{msg}}</strong>
+              <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <div class="navbar-login">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <span class="fa fa-user" style="font-size:90px"></span>
+                    </div>
+
+                    <div class="col-lg-8">
+                      <p class="text-left"><strong>{{msg}}</strong></p>
+                      <i class="fa fa-edit"></i>
+                      <!-- <a style="cursor: pointer;" (click)="toggleEditProfile()">Edit
+                        Profile</a> -->
+                      <br /><br />
+                      <hr>
+                      <!-- <p class="text-left">
+                        <a href="#" class="" style="text-decoration: none;">My Order</a>
+                      </p>
+                      <p class="text-left">
+                        <a href="#" class="" style="text-decoration: none;">My Cart</a>
+                      </p> -->
+                    </div>
                   </div>
-   
+                </div>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <div class="navbar-login navbar-login-session">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p>
+                        <a href="#" class="btn btn-danger btn-block">Log Out</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<body class="container">
+
+
+
+
+  <div class="tab-content">
+    <!-- All products -->
+    <div id="allProducts" class="container tab-pane in active">
+      <br/>
+      
+      <span id="filter">
+        
+        <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)" class="form-control">
+          <option>Choose City</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Hyderabad">Hyderabad</option>
+        </select>
+      </span>
+      <span id="filter">
+        <select #dropDown2 id="dropDown-input2" (change)="byType1(dropDown2.value)" class="form-control">
+            <option>Choose type</option>
+            <option value="AutomaticGriller">Automatic Griller</option>
+            <option value="ManualGriller">Manual Griller</option>
+            
+          </select>
+        </span>
+      <br /><br />
+      <div class="row">
+        <span id="grillerList" *ngFor="let success of grillers">
+          <div class="col-md-10">
+            <div class="product-grid2">
+              <div class="product-image2">
+                <a href="#">
+                  <!-- <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap"> -->
+                  <img class="pic-1" src="assets/images/{{success.grillImage}}">
+                  <img class="pic-2" src="assets/images/{{success.grillImage}}">
+                </a>
+                <ul class="social">
+                  <li><a data-tip="Quick View"
+                      (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
+                      href="#grillerInfoModal" data-toggle="tab"><i class="fa fa-eye"></i></a></li>
+
+                  <li></li>
+                </ul>
+                <a class="add-to-cart" (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
+                href="#grillerInfoModal" data-toggle="tab">Rent Now</a>
+              </div>
+              <div class="product-content">
+                <h3 class="title"><a href="#">{{success.grillName}}</a></h3>
+                <span class="price">Rent (per hr.) : {{success.price}}</span>
               </div>
             </div>
-        </li>
-      </div>
-        </ul>
-      </div>
-      </body>
-      <br><br>
-   <div class="container" >
-  
-  
-       <!-- Modal -->
-       <div class="modal fade" id="myModal" role="dialog">
-         <div class="modal-dialog">
-  
-           <!-- Modal content-->
-           <div class="modal-content">
-             <div class="modal-header">
-               <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-               <h4 class="modal-title text-danger"  >GRILLER INFORMATION</h4>
-             </div>
-             <div class="modal-body">
-  
-   <div *ngIf="errorMessage" class='error text-primary'>
-       {{errorMessage}}
-     </div>
-     <form [formGroup]="userForm" novalidate (submit)="save()">
-  
-  
-             <br/>
-             <div class="col-xs-6">
-               <span>
-                 <input type="text" formControlName="grillName" id="grillName" placeholder="GrillName" class='form-control'ngModel="grillName" >
-               </span><span *ngIf="userForm.status =='INVALID' ">
-                 <span class='text-danger' *ngIf="userForm.controls['grillName'].errors">
-                   <span *ngIf="userForm.controls['grillName'].errors.required">
-                     * Name is Required
-                   </span>
-                 </span>  </span>
-             </div><br>
-             <div class="col-xs-4">
-               <span>
-                 <input type="number" formControlName="price" id="price" placeholder="Enter price" class='form-control '>
-               </span>
-               <span *ngIf="userForm.status =='INVALID' ">
-                 <span class='text-danger' *ngIf="userForm.controls['price'].errors">
-                   <span *ngIf="userForm.controls['price'].errors.required">
-                     * Price is Required
-                   </span>
-                 </span>  </span>
-             </div><br>
-             <div class="col-xs-4">
-              <span>
-                <input type="file" formControlName="grillImage" id="grillImage" placeholder="Enter price" class='form-control' (change)="onFileSelect($event)">
-              </span>
-              <span *ngIf="userForm.status =='INVALID' ">
-                <span class='text-danger' *ngIf="userForm.controls['grillImage'].errors">
-                  <span *ngIf="userForm.controls['grillImage'].errors.required">
-                    * grillImage is Required
-                  </span>
-                </span>  </span>
-            </div><br>
-             <div class="col-xs-4">
-               <span>
-                 <select class='form-control ' formControlName="grillerType">
-                   <option>---Select Type of Griller</option>
-                   <option value="ManualGriller">ManualGriller</option>
-                   <option value="AutomaticGriller">AutomaticGriller</option>
-  
-                 </select>
-               </span>
-               <span *ngIf="userForm.status =='INVALID' ">
-                 <span class='text-danger' *ngIf="userForm.controls['grillerType'].errors">
-                   <span *ngIf="userForm.controls['grillerType'].errors.required">
-                     * GrillerType is Required
-                   </span>
-                 </span>  </span>
-             </div>
-             <br/>
-             <div class="col-xs-4">
-              <span>
-                <select formControlName="location" class='form-control '>
-                  <option>---Select Location</option>
-                  <option value="Bangalore">Bangalore</option>
-                  <option value="Chennai">Chennai</option>
-                  <option value="Hyderabad">Hyderabad</option>
-                </select>
-              </span>
-              <span *ngIf="userForm.status =='INVALID' ">
-                <span class='text-danger' *ngIf="userForm.controls['location'].errors">
-                  <span *ngIf="userForm.controls['location'].errors.required">
-                    * Location is Required
-                  </span>
-                </span>  </span>
-            </div>
-            <br>
-            <div class="col-xs-4">
-              <span><textarea formControlName="grillerDescriptions" rows="5" cols="60" placeholder="Give Griller Description....."class='form-control '></textarea></span>
-  
-              <span *ngIf="userForm.status =='INVALID' ">
-                <span class='text-danger' *ngIf="userForm.controls['grillerDescriptions'].errors">
-                    <span *ngIf="userForm.controls['grillerDescriptions'].errors.required">
-                      * Descriptions is Required
-                    </span>
-                </span>
-              </span>
-            </div>
-                <br/>
-                <br>
-  
-  
-                <div class="modal-footer" >
-                  <div class="col-sm-10">
-                    <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>&nbsp;
-                    <input type="submit" name="save" value="SAVE" class='btn btn-primary btn-lg' /></div>
-                  </div>
-                  </form>
-  
-            </div>
-  
           </div>
-  
+        </span>
+
+      </div>
+    </div>
+
+    <!-- My Profile -->
+    <div>
+      
+      <div class="container" *ngFor="let success1 of grillers1">
+        <div class="row">
+          <div class="col-md-4">
+              <img src="assets/images/{{success1.grillImage}}">
+          </div>
+          <div class="col-md-2">
+            <!-- <p>|</p>
+            <p>|</p>
+            <p>|</p>
+            <p>|</p> -->
+          </div>
+          <div class="col-md-6">
+            <p> {{success1.grillName}}</p>
+            <p>{{success1.grillerType}}</p>
+            <p>{{success1.price}}</p>
+            <p>{{success1.grillerDescriptions}}</p>
+          </div>
+        </div>         
+      </div>
+      
+    </div>
+
+    <!-- Modal -->
+    <div id="grillerInfoModal" class="container tab-pane">
+      <br/><br/>
+      
+      <div class="row">
+
+        <div class="col-lg-4">
+          <img class="card-img-top image" src="assets/images/{{grillImage}}" alt="Card image cap">
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h3>{{grillName}}</h3>
+            </div>
+            <div class="card-body">
+              <br />
+              <p>Type : {{grillerType}}</p>
+              <p>Rent (per hr.) : {{price}}</p>
+              <p>Available in : {{location}}</p>
+              <p>Description : {{grillerDescriptions}}</p>
+            </div>
+
+            <div class="card-footer">
+                
+                <button id="rentBtn" class="btn btn-lg btn-block btn-primary" (click)="rentGriller(grillId,grillName,price,grillerDescriptions,grillerType,location,grillImage)">RENT NOW</button>
+            </div>
+          </div>
         </div>
       </div>
-  
     </div>
-    </div>
-  
-  
-  
-  
-    <div class="container" >
-  
-  
-        <!-- Modal -->
-        <div class="modal fade" id="myModal2" role="dialog">
-          <div class="modal-dialog">
+
    
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                <h4 class="modal-title text-danger"  >GRILLER INFORMATION</h4>
-              </div>
-              <div class="modal-body">
-   
-    <div *ngIf="errorMessage" class='error text-primary'>
-        {{errorMessage}}
-      </div>
-      <form [formGroup]="userForm" novalidate (submit)="update(grill.grillId)">
-          
-   
-   
-              <br/>
-              <div class="col-xs-6">
-                <span>
-                    <div class="file-field big">
-                        <i class="far fa-heart" aria-hidden="true"></i>
-                  <input type="text" formControlName="grillName" id="grillName" placeholder="GrillName" class='form-control' value={{grill.grillName}}>
+<!-- payment -->
+    <div id="payment" class="container tab-pane">
+      <!-- <div class="container">
+        <div class="row justify-content-md-center">
+         <div class="card"  style="width: 40rem;">
+          <h2 class="card-header">Register</h2>  
+            <div class="card-body">
+              <form [formGroup]="userForm" novalidate (submit)="pay()">
+                <div class="formgroup">
+                  <label for="name">Your Name</label>
+                  <input type="text" formControlName="name" name="name" placeholder="User Name ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['name'].errors }"/>
+                
+                  <div *ngIf="submitted && userForm.controls['name'].errors" class="invalid-feedback">
+                      <div *ngIf="userForm.controls['name'].errors.required">Name is required</div>
+                  </div>
+                </div>
+    
+               
+    
+                <div class="form-group">
+                  <label for="address">Landmark</label>
+                  <input type="textarea" formControlName="address"
+                   name="address" placeholder="User Address ..."
+                    class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['address'].errors }" />
+                    <div *ngIf="submitted && userForm.controls['address'].errors" class="invalid-feedback">
+                        <div *ngIf="userForm.controls['address'].errors.required">Landmark is required</div>
                     </div>
-                </span>
+                </div>
+    
+                <div class="form-group">
+                  <label for="phn_no">Contact Number</label>
+                  <input type="number" formControlName="phn_no" name="phn_no"
+                   placeholder="User Mobile No ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['phn_no'].errors }" />
+                   <div *ngIf="submitted && userForm.controls['phn_no'].errors" class="invalid-feedback">
+                      <div *ngIf="userForm.controls['phn_no'].errors.required">Contact Number is required</div>
+                  </div>
+                </div>
+    
                 
-                
-              </div><br>
-              <div class="col-xs-4">
-                <span>
-                  <input type="number" formControlName="price" id="price" placeholder="Enter price" class='form-control'  value={{grill.price}}>
-                </span>
-                
-              </div><br>
-              <div class="col-xs-4">
-               <span>
-                 <input  type="file" formControlName="grillImage" id="grillImage"  class='form-control' (change)="onFileSelect($event)">
-               </span>
+              
+                <div class="form-group">
+                <input type="submit" name="save" value="Continue" class='btn-primary button' />
+              </div>   
+                         
+              </form>
+            </div>
+          </div>
+      </div> -->
+    
+  
+
+      <button type="submit" class="btn btn-lg btn-block btn-secondary" (click)="rentGriller(success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)">Continue</button>
                
-             </div><br>
-              <div class="col-xs-4">
-                <span>
-                  <select class='form-control ' formControlName="grillerType">
-                    <option>{{grill.grillerType}}</option>
-                    <option value="ManualGriller">ManualGriller</option>
-                    <option value="AutomaticGriller">AutomaticGriller</option>
-   
-                  </select>
-                </span>
-               
-              </div>
-              <br/>
-              <div class="col-xs-4">
-               <span>
-                 <select formControlName="location" class='form-control'>
-                   <option>{{grill.location}}</option>
-                   <option value="Bangalore">Bangalore</option>
-                   <option value="Chennai">Chennai</option>
-                   <option value="Hyderabad">Hyderabad</option>
-                 </select>
-               </span>
-               
-             </div>
-             <br>
-             <div class="col-xs-4">
-               
-               <textarea formControlName="grillerDescriptions" class='form-control'>{{grill.grillerDescriptions}}</textarea>
-               
-   
-               
-             </div>
-                 <br/>
-                 <br>
-   
-   
-                 <div class="modal-footer" >
-                   <div class="col-sm-10">
-                     <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>&nbsp;
-                     <input type="submit" name="save" value="SAVE" class='btn btn-primary btn-lg' /></div>
-                   </div>
-                  
-                   </form>
-   
-             </div>
-   
-           </div>
-   
-         </div>
+    </div>
+
+    <div id="myCart" class="container tab-pane">
+      <div class="row">
+        <div class="col-md-6">
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  
+
+  
+</body>

@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
 import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
+import { RenterDashboardComponent } from './renter-dashboard/renter-dashboard.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
-import { RegistrationComponent } from "./registration/registration.component";
+//import {LoginComponent} from "./login/login.component";
+import { RegisterComponent} from './register/register.component';
 import { ManualComponent} from "./manual/manual.component";
 import { AutomaticComponent} from "./automatic/automatic.component";
+import { FilterComponent} from "./filter/filter.component";
+import { PaymentComponent } from "./payment/payment.component";
+import { LoginComponent } from "./login/login.component";
+
 const routes: Routes = [
   {
     path: '',
@@ -15,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegistrationComponent
+    component: RegisterComponent
   },
   {
     path: 'manual',
@@ -38,6 +42,14 @@ const routes: Routes = [
     component: OwnerDashboardComponent
   },
   {
+    path: 'filter',
+    component: FilterComponent
+  },
+  {
+    path: 'renter-dashboard/payment',
+    component: PaymentComponent
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }
@@ -49,4 +61,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponent=[HomeComponent,RenterDashboardComponent,OwnerDashboardComponent,NotFoundComponent,RegistrationComponent,LoginComponent ]
+export const routingComponent=[HomeComponent,OwnerDashboardComponent,NotFoundComponent,LoginComponent,RegisterComponent]
