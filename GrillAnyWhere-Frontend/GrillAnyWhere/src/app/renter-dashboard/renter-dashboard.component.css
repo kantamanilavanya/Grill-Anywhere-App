@@ -17,17 +17,20 @@
     font-size: 87px;
 }
 
-#dropDown-input{
+/* #dropDown-input{
     border-radius: 2px;
     background-color: darkgoldenrod;
-  }
+  } */
 
-  #dropDown-input2{
+  /* #dropDown-input2{
     height: 30px;
     border-radius: 2px;
     background-color: darkgoldenrod;
-  }
+  } */
 
+  #filter{
+    display: inline-block;
+  }
 
   /* search bar */
   .searchbar {

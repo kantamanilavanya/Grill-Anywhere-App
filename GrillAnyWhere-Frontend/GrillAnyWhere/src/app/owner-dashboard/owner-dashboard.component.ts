@@ -27,6 +27,7 @@ export class OwnerDashboardComponent implements OnInit {
   byType
   angular: any;
   private delConfirm:boolean;
+  owner;
 
   constructor(private builder:FormBuilder,private service:GrillerService,private router : Router,private httpClient:HttpClient) { 
     this.buildForm()
@@ -35,7 +36,7 @@ export class OwnerDashboardComponent implements OnInit {
   ngOnInit() {
     this.onloadFun()
    
-    
+    this.owner=sessionStorage.getItem('owner');
        
   }
 
@@ -67,8 +68,9 @@ export class OwnerDashboardComponent implements OnInit {
    formData.append('price',this.userForm.get('price').value)
    formData.append('location',this.userForm.get('location').value)
     formData.append('grillerDescriptions',this.userForm.get('grillerDescriptions').value)
+    formData.append('owner',this.owner)
 
-   this.httpClient.post<any>('http://localhost:8080//grillAnywhere/griller', formData).subscribe(
+   this.httpClient.post<any>('http://localhost:8080/grillAnywhere/griller', formData).subscribe(
      (res) => console.log(res),
      (err) => console.log(err)
    );

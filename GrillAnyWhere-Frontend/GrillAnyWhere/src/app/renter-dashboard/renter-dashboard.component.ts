@@ -27,7 +27,7 @@ export class RenterDashboardComponent implements OnInit {
   byType;
   grillId
 
-  showEditProfile: boolean;
+  
   showAllProduct: boolean;
   //private userForm:FormGroup
   private user:any
@@ -122,19 +122,20 @@ export class RenterDashboardComponent implements OnInit {
 searchBarFilter(event){
   //var text = document.getElementsByName("searchbar-input").value;
   console.log("in searchBar: "+event);
-  
   this.byType=event;
   this.user={
-    grillerType:this.byType
+    grillName:this.byType
     }
     
     if(1){
       
-     this.service.findByGrillerType(this.user,success=>{
-       this.grillers=success;
-     });
+    //  this.service.findByGrillerType(this.user,success=>{
+    //    this.grillers=success;
+    //  });
+    this.service.findByGrillName(this.user,success=>{
+      this.grillers=success;
+    });
     }
-  
   }
 
   logout(){
@@ -144,16 +145,12 @@ searchBarFilter(event){
    sessionStorage.clear();
   }
 
-  toggleEditProfile(){
-    this.showEditProfile = !this.showEditProfile;
-    //this.showAllProduct = !this.showAllProduct;
-    console.log(this.showEditProfile+"" +!this.showAllProduct);
+  toggleAllGriller(){
+    document.location.reload();
   }
 
   toggleAllProduct(){
-    this.showEditProfile = !this.showEditProfile;
-    this.showAllProduct = !this.showAllProduct;
-    console.log(!this.showEditProfile+"" +this.showAllProduct);
+    
 
     this.renter=sessionStorage.getItem('renter');
     this.user={

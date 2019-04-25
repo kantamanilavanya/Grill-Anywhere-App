@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.ibm.grill.app.model.Griller;
+import com.ibm.grill.app.model.OwnerRegister;
 import com.ibm.grill.app.model.Purchase;
 import com.ibm.grill.app.repository.GrillerRepositoryMySQL;
 import com.ibm.grill.app.repository.PurchaseRepository;
@@ -52,16 +53,16 @@ public class GrillerService {
 		return (List<Griller>) grillerRepository.findByGrillerFlag(grillerFlag);	
 	}
 	
-	public List<Griller> listByGrillerType(String grillerType) {		
+	public List<Griller> listByGrillerType(String grillerType, String grillerFlag) {		
 //		return new ArrayList<Employee>(employees.values());
-		return (List<Griller>) grillerRepository.findByGrillerType(grillerType);
+		return (List<Griller>) grillerRepository.findByGrillerType(grillerType,grillerFlag);
 	}
 	
 //	
 
-	public List<Griller> findByLocation(String location)
+	public List<Griller> findByLocation(String location, String grillerFlag)
 	{
-		return grillerRepository.findByLocation(location);
+		return grillerRepository.findByLocation(location,grillerFlag);
 	}
 //	public List<Griller> findByGrillerType(String grillType)
 //	{
@@ -79,6 +80,20 @@ public class GrillerService {
 	public List<Griller> listByRenter(String renter) {
 		// TODO Auto-generated method stub
 		return (List<Griller>) purchaseRepository.findByRenter(renter);	}
+
+	public List<Griller> findByGrillName(String grillName) {
+		// TODO Auto-generated method stub
+		return grillerRepository.findByGrillName(grillName);
+	}
+	
+	public List<Griller> findByNameLike(String name,String grillerFlag){
+		return grillerRepository.findByNameLike(name,grillerFlag);
+	}
+
+	public List<OwnerRegister> findByOwner(String grillId) {
+		// TODO Auto-generated method stub
+		return grillerRepository.findByOwner(grillId);
+	}
 
 	
 

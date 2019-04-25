@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { GrillerService } from "../griller.service";
+import { ActivatedRoute,Router, RouterLink } from "@angular/router";
 
 
 @Component({
@@ -20,12 +21,16 @@ export class PaymentComponent implements OnInit {
   price
   private totalAmount
   private showAmount:boolean
+  msg;
+  showSuccess;
+  userOwner;
 
-  constructor(private builder:FormBuilder,private service:GrillerService) {
+  constructor(private builder:FormBuilder,private service:GrillerService,private router : Router) {
     this.buildForm()
    }
 
   ngOnInit() {
+    this.msg=sessionStorage.getItem('renter');
   }
 
 
@@ -71,9 +76,19 @@ export class PaymentComponent implements OnInit {
           console.log('Unable to Process request')
          
         }else{
-        this.userForm.reset();
+       // this.userForm.reset();
+       this.user={
+        grillId:this.grillId
+        }
+
+       this.service.fetchOwner(this.user,success=>{
+        this.userOwner=success;
+      });
         alert("Payments success.  Griller Rent Successfully");
-          
+        // this.showSuccess=false;
+        // this.showSuccess=!this.showSuccess;
+        //   console.log("success"+this.showSuccess);
+        this.router.navigate(['./renter-dashboard']);
         }
       })
       

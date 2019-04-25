@@ -3,6 +3,7 @@ import { ActivatedRoute,Router } from "@angular/router";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { LoginService } from '../login.service';
 import { FLAGS } from '@angular/core/src/render3/interfaces/view';
+import { OwnerService } from "../owner.service";
 
 
 @Component({
@@ -19,8 +20,9 @@ export class OwnerLoginComponent implements OnInit {
   private users:any[]
   flag;
   msg;
+  owner;
   
-  constructor(private builder:FormBuilder,private router : Router) { 
+  constructor(private builder:FormBuilder,private router : Router,private ownerService : OwnerService) { 
     this.buildForm()
     }
 
@@ -45,9 +47,23 @@ export class OwnerLoginComponent implements OnInit {
     }
    
     
-    if(this.userForm.controls['email'].value=="lavanya@gmail.com" && this.userForm.controls['password'].value=="lavanya@08" ){
+    if(this.userForm.controls['email'].value=="new@gmail.com" && this.userForm.controls['password'].value=="new" ){
       
-      sessionStorage.setItem('renter',this.userForm.controls['email'].value);
+      this.user={
+        name:this.userForm.controls['email'].value
+        }
+        
+        if(1){
+          
+         this.ownerService.findByOwner(this.user,success=>{
+           this.owner=success;
+           console.log("owner : "+this.owner.name);
+         });
+        }
+
+        
+        
+      sessionStorage.setItem('owner',this.owner);
       this.router.navigate(['./owner-dashboard']);
      // window.location.reload();
     }else

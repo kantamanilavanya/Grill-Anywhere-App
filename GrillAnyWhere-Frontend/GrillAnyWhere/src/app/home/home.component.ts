@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   grillerDescriptions;
   flag;
   byType;
+  grillImage
 
   private userForm:FormGroup
   private user:any
@@ -92,9 +93,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  grillerInfo(grillName,price,grillerDescriptions,grillerType,location){
+  grillerInfo(grillImage,grillName,price,grillerDescriptions,grillerType,location){
     console.log("into grillerInfo"+grillName+","+price+","+grillerDescriptions+","+grillerType+","+location);
 
+    this.grillImage=grillImage;
     this.grillName=grillName;
     this.location=location;
     this.grillerType=grillerType;
@@ -122,14 +124,17 @@ export class HomeComponent implements OnInit {
     console.log("in searchBar: "+event);
     this.byType=event;
     this.user={
-      grillerType:this.byType
+      grillName:this.byType
       }
       
       if(1){
         
-       this.service.findByGrillerType(this.user,success=>{
-         this.grillers=success;
-       });
+      //  this.service.findByGrillerType(this.user,success=>{
+      //    this.grillers=success;
+      //  });
+      this.service.findByGrillName(this.user,success=>{
+        this.grillers=success;
+      });
       }
     }
 

@@ -32,10 +32,21 @@ export class OwnerService {
    }
    getUser(callback){
     this.http.get(this._url+'/oregister').subscribe(data=>{
-callback(data)
-console.log(data)},error=>{
+    callback(data)
+    console.log(data)},error=>{
 
-console.log('unable to process request')
+    console.log('unable to process request')
+
+    })
+  }
+
+  findByOwner(user, callback) {
+    this.http.get(this._url + '/byOwner/' + user.name).subscribe(data => {
+      callback(data)
+      console.log(data)
+    }, error => {
+
+      console.log('unable to process request')
 
     })
   }

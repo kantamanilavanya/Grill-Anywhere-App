@@ -20,13 +20,15 @@ public class GrillerRepositoryImpl implements GrillerRepositoryCustom{
 					getResultList();
 	}
 
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	public List<Griller> getGrillerByName(String grillerName) {
-//		return this.entityManager.
-//				createQuery("select e from Griller e where e.grill_name like '"+grillerName+"'").
-//					getResultList();
-//	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Griller> getGrillerByName(String grillName) {
+		//grillName = grillName.toLowerCase();
+		//System.out.println("Input character "+grillName );
+		return this.entityManager.
+				createQuery("select e from Griller e where e.grillName like '%"+ grillName +"%'").
+					getResultList();
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

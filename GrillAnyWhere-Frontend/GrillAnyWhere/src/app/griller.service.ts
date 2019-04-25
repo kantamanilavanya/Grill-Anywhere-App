@@ -9,7 +9,7 @@ import { Console } from '@angular/core/src/console';
 })
 export class GrillerService {
 
-  private _url: string = 'http://localhost:8080//grillAnywhere/griller'
+  private _url: string = 'http://localhost:8080/grillAnywhere/griller';
   constructor(private http: HttpClient) { }
 
   saveGriller(formData: FormData): Observable<any> {
@@ -17,7 +17,29 @@ export class GrillerService {
   }
 
 
+  findByGrillName(user, callback) {
+    console.log(user.grillName);
+    this.http.get(`${this._url}/byGrillName/${user.grillName}`).subscribe(data => {
+      callback(data)
+      console.log(data)
+    }, error => {
 
+      console.log('unable to process request')
+
+    })
+  }
+
+  fetchOwner(user, callback) {
+   // console.log(user.grillName);
+    this.http.get(`${this._url}/payment/${user.grillId}`).subscribe(data => {
+      callback(data)
+      console.log(data)
+    }, error => {
+
+      console.log('unable to process request')
+
+    })
+  }
 
   findByGrillerType(user, callback) {
     this.http.get(this._url + '/byGrillerType/' + user.grillerType).subscribe(data => {

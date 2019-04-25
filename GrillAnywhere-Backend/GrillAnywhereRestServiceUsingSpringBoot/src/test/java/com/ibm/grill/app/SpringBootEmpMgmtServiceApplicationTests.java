@@ -1,4 +1,4 @@
-package com.examples.spring.boot.rest;
+package com.ibm.grill.app;
 
 import org.junit.Test;
 

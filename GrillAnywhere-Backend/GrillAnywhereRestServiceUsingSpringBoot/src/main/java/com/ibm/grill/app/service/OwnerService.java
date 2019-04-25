@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ibm.grill.app.model.Griller;
 import com.ibm.grill.app.model.OwnerRegister;
 import com.ibm.grill.app.repository.OwnerRepository;
 
@@ -81,6 +82,10 @@ public class OwnerService implements OwnerRepository{
 		public void deleteAll() {
 			// TODO Auto-generated method stub
 			
+		}
+		public List<OwnerRegister> findByEmail(String email) {
+			// TODO Auto-generated method stub
+			return owner.findByEmail(email);
 		}
 	
 

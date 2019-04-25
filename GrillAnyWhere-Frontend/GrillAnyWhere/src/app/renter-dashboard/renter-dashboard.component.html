@@ -1,79 +1,8 @@
-<!-- <nav class="navbar navbar-expand bg-dark navbar-dark sticky-top">
-  <div class="container">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <h5 style="color:white">GRILL ANYWHERE</h5>
-
-      <a class="navbar-brand" href="#">
-        <img src="https://www.colourbox.com/preview/6809286-grill.jpg" width="160px" height="50px" alt="">
-      </a>
-      <h5 style="color:white;">Welcome {{msg}}</h5>
-      <ul class="navbar-nav ml-auto" id="menu">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-
-          </a>
-        </li>
-        <li></li>
-
-        <li class="nav-item">
-
-          <a class="nav-link" href="#" routerLink="/manual">Manual</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" routerLink="/automatic">Automatic</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item dropdown bg-dark">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Select City
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item">Bangalore</a>
-            <a class="dropdown-item">Chennai</a>
-
-            <a class="dropdown-item">Hyderabad</a>
-          </div>
-        </li>
-
-        <li class="nav-item">
-
-          <input type="text" placeholder="Search" style="width:200px">
-        </li>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-          <button type="submit" (click)="logout()" style="width:70px" class="btn btn-secondary">LogOut</button>
-          
-
-      
-
-
-
-      </ul>
-    </div>
-  </div>
-</nav>
-
- -->
 
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container">
-      <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)">
-          <option>Choose City</option>
-          <option value="Bangalore">Bangalore</option>
-          <option value="Chennai">Chennai</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Hyderabad">Hyderabad</option>
-        </select> &nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;
     <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
     
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -82,20 +11,15 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
           <li class="searchbar">
-              <input type="text" #search id="searchbar-input" (change)="searchBarFilter(search.value)">
+              <input type="text" #search id="searchbar-input" (keyup)="searchBarFilter(search.value)">
               <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
               <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
             </li>
         <li class="nav-item active">
-          <a href="#allProducts" data-toggle="tab" class="nav-link">All Products</a>
+          <a style="cursor: pointer;" class="nav-link" (click)="toggleAllGriller()">All Products</a>
         </li>
 
-        <select #dropDown2 id="dropDown-input2" (change)="searchBarFilter(dropDown2.value)">
-            <option>Choose type</option>
-            <option value="AutomaticGriller">Automatic Griller</option>
-            <option value="ManualGriller">Manual Griller</option>
-            
-          </select>
+       
         <!-- <li class="nav-item">
           <a href="#" routerLink="/manual" class="nav-link">Manual</a>
         </li>
@@ -126,8 +50,8 @@
                     <div class="col-lg-8">
                       <p class="text-left"><strong>{{msg}}</strong></p>
                       <i class="fa fa-edit"></i>
-                      <a style="cursor: pointer;" (click)="toggleEditProfile()">Edit
-                        Profile</a>
+                      <!-- <a style="cursor: pointer;" (click)="toggleEditProfile()">Edit
+                        Profile</a> -->
                       <br /><br />
                       <hr>
                       <!-- <p class="text-left">
@@ -168,7 +92,27 @@
 
   <div class="tab-content">
     <!-- All products -->
-    <div *ngIf="!showEditProfile" id="allProducts" class="container tab-pane in active">
+    <div id="allProducts" class="container tab-pane in active">
+      <br/>
+      
+      <span id="filter">
+        
+        <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)" class="form-control">
+          <option>Choose City</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Hyderabad">Hyderabad</option>
+        </select>
+      </span>
+      <span id="filter">
+        <select #dropDown2 id="dropDown-input2" (change)="searchBarFilter(dropDown2.value)" class="form-control">
+            <option>Choose type</option>
+            <option value="AutomaticGriller">Automatic Griller</option>
+            <option value="ManualGriller">Manual Griller</option>
+            
+          </select>
+        </span>
       <br /><br />
       <div class="row">
         <span id="grillerList" *ngFor="let success of grillers">
@@ -185,9 +129,10 @@
                       (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
                       href="#grillerInfoModal" data-toggle="tab"><i class="fa fa-eye"></i></a></li>
 
-                  <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                  <li></li>
                 </ul>
-                <a class="add-to-cart" href="" routerLink="/login" (click)="setFlag()">Rent Now</a>
+                <a class="add-to-cart" (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
+                href="#grillerInfoModal" data-toggle="tab">Rent Now</a>
               </div>
               <div class="product-content">
                 <h3 class="title"><a href="#">{{success.grillName}}</a></h3>
@@ -201,8 +146,8 @@
     </div>
 
     <!-- My Profile -->
-    <div  *ngIf="showEditProfile">
-      my order
+    <div>
+      
       <div class="container" *ngFor="let success1 of grillers1">
         <div class="row">
           <div class="col-md-4">
@@ -228,9 +173,7 @@
     <!-- Modal -->
     <div id="grillerInfoModal" class="container tab-pane">
       <br/><br/>
-      <button type="button" class="btn btn-info" (click)="back()">
-        Back to Menu
-      </button>
+      
       <div class="row">
 
         <div class="col-lg-4">

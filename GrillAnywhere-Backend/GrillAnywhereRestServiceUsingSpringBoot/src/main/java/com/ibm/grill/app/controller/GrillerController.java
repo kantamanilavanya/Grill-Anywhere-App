@@ -43,6 +43,7 @@ import com.ibm.grill.app.exception.LoginException;
 import com.ibm.grill.app.exception.ValidationException;
 import com.ibm.grill.app.model.ErrorDetails;
 import com.ibm.grill.app.model.Griller;
+import com.ibm.grill.app.model.OwnerRegister;
 import com.ibm.grill.app.model.Purchase;
 import com.ibm.grill.app.service.GrillerService;
 
@@ -66,6 +67,13 @@ public class GrillerController {
 //	private void initBinder(WebDataBinder binder) {
 //		binder.setValidator(validator);
 //	}
+	
+	@GetMapping("/status")
+	@ResponseBody
+	public String status() {
+		return "Running fine";
+	}
+	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Griller> UploadFile(@RequestPart MultipartFile file, WebRequest request,
@@ -90,7 +98,8 @@ public class GrillerController {
 	@GetMapping("/byGrillerType/{grillerType}")
 	public HttpEntity<List<Griller>> getEmployee(@PathVariable String grillerType, HttpSession session) {
 
-		return new ResponseEntity<List<Griller>>(grillService.listByGrillerType(grillerType), HttpStatus.OK);
+		String grillerFlag="A";
+		return new ResponseEntity<List<Griller>>(grillService.listByGrillerType(grillerType,grillerFlag), HttpStatus.OK);
 	}
 	
 	
@@ -162,8 +171,25 @@ public class GrillerController {
 	@CrossOrigin(origins = "*")
 	@GetMapping("/byGrillerLocation/{location}")
 	public HttpEntity<List<Griller>> getGrillerType(@PathVariable String location , HttpSession session) {
+		String grillerFlag="A";
 
-		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.findByLocation(location), HttpStatus.OK);
+		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.findByLocation(location,grillerFlag), HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/byGrillName/{grillName}")
+	public HttpEntity<List<Griller>> getByGrillName(@PathVariable String grillName , HttpSession session) {
+		String grillerFlag="A";
+
+		return new ResponseEntity<List<Griller>>((List<Griller>) grillService.findByNameLike(grillName,grillerFlag), HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/payment/{grillId}")
+	public HttpEntity<List<OwnerRegister>> getOwner(@PathVariable String grillId , HttpSession session) {
+		//String grillerFlag="A";
+
+		return new ResponseEntity<List<OwnerRegister>>((List<OwnerRegister>) grillService.findByOwner(grillId), HttpStatus.OK);
 	}
 	
 
