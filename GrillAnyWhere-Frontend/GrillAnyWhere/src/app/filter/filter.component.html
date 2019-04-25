@@ -1,0 +1,149 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a href="index.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="about.html" class="nav-link">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a href="services.html" class="nav-link">Services</a>
+        </li>
+      
+        <li>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </li>
+        <button type="button" class="btn btn-info" (click)="logout()">
+         SIGNOUT
+        </button>
+        <li>
+          &nbsp;&nbsp;
+        </li>
+       
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!--login modal-->
+<div>
+  <div>
+    <ul class="nav nav-tabs bg-light" role="tab-list">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#renter-login">BYLOCATION</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#owner-login">BYPRICE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#Type">BYTYPE</a>
+      </li>
+    </ul>
+    <br /><br><br><br>
+    <div class="tab-content">
+      <!--LOCATION-->
+      <div id="renter-login" class="container tab-pane active">
+
+        <div class="col-md-6  offset-sm-2">
+          <form [formGroup]="userForm" novalidate (submit)="saveData()">
+
+            <div>
+              <input type="text" formControlName="location" name="location" ng-model="location" placeholder="Enter your location Id ..."
+                class='form-control input' />
+              <span *ngIf="userForm.controls['location'].errors">
+                <span class='text-danger' *ngIf="userForm.controls['location'].errors.required">
+                  * LOCATION Required
+                </span>
+                <span class='text-danger' *ngIf="userForm.controls['location'].errors.location">
+                  Please specify Location
+                </span>
+              </span>
+            </div><br>
+            <input type="submit" name="save" value="SEARCH" class='btn btn-primary button' />
+          </form>
+        </div>
+      </div>
+
+      <!--TYPE-->
+      <div id="Type" class="container tab-pane">
+
+        <div class="col-md-6  offset-sm-2">
+          <form [formGroup]="userForm" novalidate (submit)="saveDataType()">
+
+            <div>
+              <input type="text" formControlName="grillerType" name="grillerType" ng-model="grillerType" placeholder="Enter your grillerType Id ..."
+                class='form-control input' />
+              <span *ngIf="userForm.controls['grillerType'].errors">
+                <span class='text-danger' *ngIf="userForm.controls['grillerType'].errors.required">
+                  * grillerType Required
+                </span>
+                <span class='text-danger' *ngIf="userForm.controls['grillerType'].errors.grillerType">
+                  Please specify grillerType
+                </span>
+              </span>
+            </div><br>
+            <input type="submit" name="save" value="SEARCH" class='btn btn-primary button' />
+          </form>
+        </div>
+      </div>
+
+
+
+      <!--PRICE-->
+      <div id="owner-login" class="container tab-pane ">
+
+        <div class="col-md-6 offset-sm-2">
+          <form [formGroup]="userForm" novalidate (submit)="save()">
+
+            <div>
+              <input type="text" formControlName="price" name="price"
+               placeholder="price ..." class='form-control input ' />
+              <span *ngIf="userForm.controls['price'].errors">
+                <span class='text-danger' *ngIf="userForm.controls['price'].errors.required">
+                  * price is Required
+                </span>
+                <span class='text-danger' *ngIf="userForm.controls['price'].errors.price">
+                  Please specify price
+                </span>
+              </span>
+            </div><br>
+
+
+            <input type="submit" name="save" value="SEARCH" class='btn btn-primary button' />
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <body class="container">
+
+      <div id="menu" class="card-columns" >
+      <ul>
+        <div class="card-columns ">
+        <li *ngFor="let success of grillers">
+            <div class="column">
+                <div class="card" style="width: 18rem;height:28rem">
+                    <hr>
+                    <p class="card-text">{{success.grillName}}</p>
+                    <hr>
+                    <p>Starts From {{success.price}}$</p>
+                    <hr>
+                    <p>Type {{success.grillerType}}</p>
+                    <hr>
+                    <p>Location {{success.location}}</p>
+                  
+                </div>
+              </div>
+        </li>
+      </div>
+        </ul>
+      </div>
+    </body> 

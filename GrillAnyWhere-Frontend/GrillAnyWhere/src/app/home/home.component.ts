@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery'
+import { GrillerService } from "../griller.service";
+import { ActivatedRoute,Router } from "@angular/router";
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
 //import {  } from "../user.service";
 
 @Component({
@@ -8,12 +11,56 @@ import * as $ from 'jquery'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-   
-  constructor() { 
+  private grillers:any[]
+  grillName;
+  location;
+  grillerType;
+  price;
+  grillerDescriptions;
+  flag;
+  byType;
+  grillImage
+
+  private userForm:FormGroup
+  private user:any
+  constructor(private service:GrillerService,private router: Router) { 
    
   }
 
   ngOnInit() {
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+
+    $(document).ready(() => {
+      $('#rentBtn').click(()=>{
+        $('#grillerInfoModal').hide();
+        
+        location.reload();
+      });
+    });
+
+
+    $(document).ready(function(){
+  
+      $('#searchbar-icon').click(function(){
+        $('#searchbar-input').animate({width: 'toggle'});
+        $("#searchbar-icon").toggle();
+        $("#searchbar-cross").toggle(500);
+      });
+      
+      $('#searchbar-cross').click(function(){
+        $('#searchbar-input').animate({width: 'toggle'});
+        $("#searchbar-cross").toggle();
+        $("#searchbar-icon").toggle(500);
+      });
+      
+     
+    });
+
+    this.onloadFun();
+
     $('#year').text(new Date().getFullYear());
 
     // Configure Slider
@@ -44,4 +91,80 @@ export class HomeComponent implements OnInit {
   }
   
 
+  onloadFun(){
+    this.service.getUser(success=>{
+         this.grillers=success;
+         console.log("in home "+this.grillers);
+    });
+  }
+
+  grillerInfo(grillImage,grillName,price,grillerDescriptions,grillerType,location){
+    console.log("into grillerInfo"+grillName+","+price+","+grillerDescriptions+","+grillerType+","+location);
+
+    this.grillImage=grillImage;
+    this.grillName=grillName;
+    this.location=location;
+    this.grillerType=grillerType;
+    this.grillerDescriptions=grillerDescriptions;
+    this.price=price;
+  }
+
+  rentFunc(){
+    console.log("into rent func");
+    this.setFlag();
+    
+     this.router.navigate(['./renterLogin']);
+     
+  }
+
+  setFlag(){
+    console.log("into setFlag");
+    this.flag=1;
+    sessionStorage.setItem('flagMsg',this.flag);
+  }
+
+
+  searchBarFilter(event){
+    //var text = document.getElementsByName("searchbar-input").value;
+    console.log("in searchBar: "+event);
+    this.byType=event;
+    this.user={
+      grillName:this.byType
+      }
+      
+      if(1){
+        
+      //  this.service.findByGrillerType(this.user,success=>{
+      //    this.grillers=success;
+      //  });
+      this.service.findByGrillName(this.user,success=>{
+        this.grillers=success;
+      });
+      }
+    }
+
+
+    dropDownFilter(event){
+      console.log("in dropDown: "+event);
+      if(event!='Choose City'){
+        this.user={
+          location:event
+          }
+          
+          if(1){
+            
+           this.service.findByLocation(this.user,success=>{
+             this.grillers=success;
+           });
+      }
+      }
+      else{
+        this.service.getUser(success=>{
+          this.grillers=success;
+          console.log("in home "+this.grillers);
+     });
+      
+      }
+      
+  }
 }
