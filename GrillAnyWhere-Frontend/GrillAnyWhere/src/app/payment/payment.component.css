@@ -111,3 +111,13 @@
           font-size: 17px;
           font-weight: 500;
 }
+div.container-fluid{
+  margin-top: -3.3%;
+  height: 105vh;
+  background-image: url('../../assets/images/image.png');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color:aqua;
+}

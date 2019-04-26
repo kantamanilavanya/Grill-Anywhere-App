@@ -12,4 +12,6 @@ public interface GrillerRepositoryCustom {
 	List<Griller> findAllbyGrillerFlag(String grillerFlag);
 
 	List<Griller> getGrillerByRenter(String grillerType);
+
+	int updateFlag(int id);
 }

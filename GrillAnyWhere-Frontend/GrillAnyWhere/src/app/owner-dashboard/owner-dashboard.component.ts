@@ -1,6 +1,3 @@
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router, RouterLink } from "@angular/router";
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angular/forms";
@@ -24,6 +21,7 @@ export class OwnerDashboardComponent implements OnInit {
   private grillers:any[]
   public grillerFile:any=File;
   private grill:any
+  rentedGrills:any
   byType
   angular: any;
   private delConfirm:boolean;
@@ -34,11 +32,6 @@ export class OwnerDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-        history.go(1);
-    };
-
     this.onloadFun()
    
     this.owner=sessionStorage.getItem('owner');
@@ -127,6 +120,8 @@ export class OwnerDashboardComponent implements OnInit {
           
    );
    this.onloadFun()
+   
+   
   
   }
 
@@ -147,13 +142,31 @@ export class OwnerDashboardComponent implements OnInit {
   }
   }
 
+  updateFlag(grillId){
+    
+
+    
+      this.service.updateFlag(grillId,data=>{
+      this.onloadFun()
+      window.location.reload();
+     
+  })
+  }
+
   onloadFun(){
     this.service.getUser(success=>{
       this.grillers=success;
     });
-    this.grill=""
+    this.grill="";
+    this.rent();
   }
+rent(){
+  this.service.getUserByFlag(data=>{
+    this.rentedGrills=data;
+    console.log(this.rentedGrills)
+  })
 
+}
 
   filterOwnerSection(event){
     this.byType=event;
@@ -161,11 +174,15 @@ export class OwnerDashboardComponent implements OnInit {
       grillerType:this.byType
       }
       
-      if(1){
-        
-       this.service.findByGrillerType(this.user,success=>{
-         this.grillers=success;
-       });
+      if(event==""){
+        console.log("checkkkk")
+        this.grillers.values=null
+        this.onloadFun()
+       
+      }else{
+        this.service.findByGrillerType(this.user,success=>{
+          this.grillers=success;
+        });
       }
   }
   

@@ -1,121 +1,174 @@
-<!-- <div class="container">
-    
-              <div >
-                  <h1 class="h1">AUTOMATIC GRILLERS</h1><br>
-                <div class="card-deck">
-          <div class="row" style="margin-bottom:25px">
-                <div class="column">
-                        <div class="card" style="width: 16rem;">
-                                <img class="card-img-top" src="assets/images/griller5.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <hr>
-                                  <p class="card-text">Grill Machine</p>
-                                  <hr>
-                                  <p>Starts From $866</p>
-                                </div>
-                              </div>
-                </div>
-                <br>
-              
-                <div class="column">
-                        <div class="card" style="width: 16rem;">
-                                <img class="card-img-top" src="assets/images/griller6.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <hr>
-                                  <p class="card-text">Tabletop Electric Grill  </p>
-                                  <hr>
-                                  <p>Starts From $466</p>
-                                </div>
-                              </div>
-                </div>
-                
-                <div class="column">
-                        <div class="card" style="width: 16rem;">
-                                <img class="card-img-top" src="assets/images/griller7.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <hr>
-                                  <p class="card-text">Prestige Electric  Griller</p>
-                                  <hr>
-                                  <p>Starts From $950</p>
-                                </div>
-                              </div>
-                </div>
-                
-                <div class="column">
-                        <div class="card" style="width: 16rem;">
-                                <img class="card-img-top" src="assets/images/griller8.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <hr>
-                                  <p class="card-text">Hot Dog 11 Roller</p>
-                                  <hr>
-                                  <p>Starts From $450</p>
-                                </div>
-                              </div>
-                </div>
-              </div>
-            </div> 
-         -->
+<nav class="navbar navbar-expand bg-dark navbar-dark sticky-top">
+    <div class="container">
+   
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+   
+      
+          <a class="navbar-brand" href="#">
+              <img src="https://www.colourbox.com/preview/6809286-grill.jpg
+       https://www.colourbox.com/preview/6809286-grill.jpg
+       " width="160px" height="30px" alt="" style="margin-left:-200px">
+            </a>
+       
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <h5 style="color:white">GRILL ANYWHERE</h5>
+        <h5 style="color:white;">Welcome {{msg}}</h5>
+        <ul class="navbar-nav ml-auto" id="menu">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" routerLink="/renter-dashboard">Home
+   
+            </a>
+          </li>
+          <li></li>
+   
+          <li class="nav-item">
+   
+            <a class="nav-link" href="#" routerLink="/manual">Manual</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="/automatic">Automatic</a>
+          </li>
 
-         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <div class="container">
-              <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
-              <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                    <a href="index.html" class="nav-link">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="about.html" class="nav-link">About Us</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="services.html" class="nav-link">Services</a>
-                  </li>
-                
-                  <li>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </li>
-                  <button type="button" class="btn btn-info" routerLink="/home" >
-                   SIGNOUT
-                  </button>
-                  <li>
-                    &nbsp;&nbsp;
-                  </li>
-                 
+         <li>
+           
+         </li>
+          
+   
+          
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   
+            <button type="submit" (click)="logout()" style="width:70px" class="btn btn-secondary">LogOut</button>
+   
+   
+   
+   
+   
+   
+        </ul>
+      </div>
+    </div>
+   </nav>
+
+   <body>
+
+   <div class="tab-content">
+    <!-- All products -->
+    <div id="allProducts" class="container tab-pane in active">
+      <br/>
+      
+      
+      <br /><br />
+      <div class="row">
+        <span id="grillerList" *ngFor="let success of grillers">
+          <div class="col-md-10">
+            <div class="product-grid2">
+              <div class="product-image2">
+                <a href="#">
+                  <!-- <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap"> -->
+                  <img class="pic-1" src="assets/images/{{success.grillImage}}">
+                  <img class="pic-2" src="assets/images/{{success.grillImage}}">
+                </a>
+                <ul class="social">
+                  <li><a data-tip="Quick View"
+                      (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
+                      href="#grillerInfoModal" data-toggle="tab"><i class="fa fa-eye"></i></a></li>
+
+                  <li></li>
                 </ul>
+                <a class="add-to-cart" (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
+                href="#grillerInfoModal" data-toggle="tab">Rent Now</a>
+              </div>
+              <div class="product-content">
+                <h3 class="title"><a href="#">{{success.grillName}}</a></h3>
+                <span class="price">Rent (per hr.) : {{success.price}}</span>
               </div>
             </div>
-          </nav>
-        
-          
-        
-          
-          <body class="container">
-        
-            <div id="menu" class="card-columns" >
-            <ul>
-              <div class="card-columns ">
-              <li *ngFor="let success of grillers">
-                  <div class="column">
-                      <div class="card" style="width: 18rem;height:28rem">
-                          <img class="card-img-top" src="assets/images/{{success.grillImage}}" alt="Card image cap">
-                          <hr>
-                          <p class="card-text">{{success.grillName}}</p>
-                          <hr>
-                          <p>Starts From {{success.price}}$</p>
-                          <hr>
-                          <p>Type {{success.grillerType}}</p>
-                          <hr>
-                          <p>Location {{success.location}}</p>
-                        
-                      </div>
-                    </div>
-              </li>
+          </div>
+        </span>
+
+      </div>
+    </div>
+
+    <!-- My Profile
+    <div>
+      
+      <div class="container" *ngFor="let success1 of grillers">
+        <div class="row">
+          <div class="col-md-4">
+              <img src="assets/images/{{success1.grillImage}}">
+          </div>
+          <div class="col-md-2">
+             <p>|</p>
+            <p>|</p>
+            <p>|</p>
+            <p>|</p> 
+          </div>
+          <div class="col-md-6">
+            <p> {{success1.grillName}}</p>
+            <p>{{success1.grillerType}}</p>
+            <p>{{success1.price}}</p>
+            <p>{{success1.grillerDescriptions}}</p>
+          </div>
+        </div>         
+      </div> -->
+      
+    
+
+    <!-- Modal -->
+    <div id="grillerInfoModal" class="container tab-pane">
+      <br/><br/>
+      
+      <div class="row">
+
+        <div class="col-lg-4">
+          <img class="card-img-top image" src="assets/images/{{grillImage}}" alt="Card image cap">
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h3>{{grillName}}</h3>
             </div>
-              </ul>
+            <div class="card-body">
+              <br />
+              <p>Type : {{grillerType}}</p>
+              <p>Rent (per hr.) : {{price}}</p>
+              <p>Available in : {{location}}</p>
+              <p>Description : {{grillerDescriptions}}</p>
             </div>
-          </body> 
+
+            <div class="card-footer">
+                
+                <button id="rentBtn" class="btn btn-lg btn-block btn-primary" (click)="rentGriller(grillId,grillName,price,grillerDescriptions,grillerType,location,grillImage)">RENT NOW</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+<!-- payment -->
+    <div id="payment" class="container tab-pane">
+     
+
+      <button type="submit" class="btn btn-lg btn-block btn-secondary" (click)="rentGriller(success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)">Continue</button>
+               
+    </div>
+
+    <div id="myCart" class="container tab-pane">
+      <div class="row">
+        <div class="col-md-6">
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
   
+
   
+</body>

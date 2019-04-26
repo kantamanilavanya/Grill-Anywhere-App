@@ -1,6 +1,6 @@
 package com.ibm.grill.app.model;
 
 public enum  RoleName {
-	ROLE_USER,
-    ROLE_ADMIN
+	Role_User,
+    Role_Admin
 }

@@ -1,118 +1,152 @@
 
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container">
-      &nbsp;&nbsp;&nbsp;
-    <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
-    
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ml-auto">
-          <li class="searchbar">
-              <input type="text" #search id="searchbar-input" (keyup)="searchBarFilter(search.value)">
-              <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
-              <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
-            </li>
-        <li class="nav-item active">
-          <a style="cursor: pointer;" class="nav-link" (click)="toggleAllGriller()">All Products</a>
-        </li>
 
-       
-        <!-- <li class="nav-item">
-          <a href="#" routerLink="/manual" class="nav-link">Manual</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" routerLink="/automatic" class="nav-link">Automatic</a>
-        </li> -->
-
-        <li>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </li>
-
-
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="text-decoration: none;">
-              <span class="fa fa-user"></span> 
-              <strong>Welcome {{msg}}</strong>
-              <span class="glyphicon glyphicon-chevron-down"></span>
+<nav class="navbar navbar-expand bg-dark navbar-dark sticky-top">
+    <div class="container">
+   
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+          <img src="https://www.colourbox.com/preview/6809286-grill.jpg
+   https://www.colourbox.com/preview/6809286-grill.jpg
+   " width="160px" height="30px" alt="" style="margin-left:-200px">
+        </a>
+   
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <h5 style="color:white">GRILL ANYWHERE</h5>
+   
+        
+        <h5 style="color:white;">Welcome {{msg}}</h5>
+        <ul class="navbar-nav ml-auto" id="menu">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+   
             </a>
-            <ul class="dropdown-menu">
-              <li>
-                <div class="navbar-login">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <span class="fa fa-user" style="font-size:90px"></span>
-                    </div>
-
-                    <div class="col-lg-8">
-                      <p class="text-left"><strong>{{msg}}</strong></p>
-                      <i class="fa fa-edit"></i>
-                      <!-- <a style="cursor: pointer;" (click)="toggleEditProfile()">Edit
-                        Profile</a> -->
-                      <br /><br />
-                      <hr>
-                      <!-- <p class="text-left">
-                        <a href="#" class="" style="text-decoration: none;">My Order</a>
-                      </p>
-                      <p class="text-left">
-                        <a href="#" class="" style="text-decoration: none;">My Cart</a>
-                      </p> -->
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <div class="navbar-login navbar-login-session">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <p>
-                        <a href="#" class="btn btn-danger btn-block">Log Out</a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
           </li>
+          <li></li>
+   
+          <li class="nav-item">
+   
+            <a class="nav-link" href="#" routerLink="/manual">Manual</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="/automatic">Automatic</a>
+          </li>
+
+         <li>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="searchbar">
+                        <input type="text" #search id="searchbar-input" (keyup)="searchBarFilter(search.value)">
+                        <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
+                        <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
+                      </li>
+                  <li class="nav-item active">
+                    <a style="cursor: pointer;" class="nav-link" (click)="toggleAllGriller()">Grillers</a>
+                  </li>
+          
+                 
+                  
+                  <li>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </li>
+          
+          
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                     
+                    </li>
+                    <li>
+                      <span id="filter">
+                  
+                        <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)" class="form-control">
+                          <option>Choose City</option>
+                          <option value="Bangalore">Bangalore</option>
+                          <option value="Chennai">Chennai</option>
+                          <option value="Mumbai">Mumbai</option>
+                          <option value="Hyderabad">Hyderabad</option>
+                        </select>
+                      </span>&nbsp;
+                      <span id="filter">
+                        <select #dropDown2 id="dropDown-input2" (change)="byType1(dropDown2.value)" class="form-control">
+                            <option>Choose type</option>
+                            <option value="AutomaticGriller">Automatic Griller</option>
+                            <option value="ManualGriller">Manual Griller</option>
+                            
+                          </select>
+                        </span>
+                    </li>
+                    <li>
+                      
+                    </li>
+                  </ul>
+          
+                </ul>
+              </div>
+           
+         </li>
+          
+   
+          
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   
+            <button type="submit" (click)="logout()" style="width:70px" class="btn btn-secondary">LogOut</button>
+   
+   
+   
+   
+   
+   
         </ul>
-
-      </ul>
+      </div>
     </div>
+   </nav>
+
+
+<body class="container-fluid">
+  <div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+  
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="image" src="assets/images/image1.jpg" alt="Los Angeles">
+      </div>
+      <div class="carousel-item">
+        <img class="image" src="assets/images/image2.jpg"  alt="Chicago">
+      </div>
+      <div class="carousel-item">
+        <img class="image" src="assets/images/image3.jpg" alt="New York" >
+      </div>
+    </div>
+  
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
   </div>
-</nav>
-
-<body class="container">
-
+  
+  
 
 
 
-  <div class="tab-content">
+  <div class="tab-content" style="margin-top:-73px">
     <!-- All products -->
     <div id="allProducts" class="container tab-pane in active">
       <br/>
       
-      <span id="filter">
-        
-        <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)" class="form-control">
-          <option>Choose City</option>
-          <option value="Bangalore">Bangalore</option>
-          <option value="Chennai">Chennai</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Hyderabad">Hyderabad</option>
-        </select>
-      </span>
-      <span id="filter">
-        <select #dropDown2 id="dropDown-input2" (change)="byType1(dropDown2.value)" class="form-control">
-            <option>Choose type</option>
-            <option value="AutomaticGriller">Automatic Griller</option>
-            <option value="ManualGriller">Manual Griller</option>
-            
-          </select>
-        </span>
+      
       <br /><br />
       <div class="row">
         <span id="grillerList" *ngFor="let success of grillers">
@@ -205,54 +239,7 @@
    
 <!-- payment -->
     <div id="payment" class="container tab-pane">
-      <!-- <div class="container">
-        <div class="row justify-content-md-center">
-         <div class="card"  style="width: 40rem;">
-          <h2 class="card-header">Register</h2>  
-            <div class="card-body">
-              <form [formGroup]="userForm" novalidate (submit)="pay()">
-                <div class="formgroup">
-                  <label for="name">Your Name</label>
-                  <input type="text" formControlName="name" name="name" placeholder="User Name ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['name'].errors }"/>
-                
-                  <div *ngIf="submitted && userForm.controls['name'].errors" class="invalid-feedback">
-                      <div *ngIf="userForm.controls['name'].errors.required">Name is required</div>
-                  </div>
-                </div>
-    
-               
-    
-                <div class="form-group">
-                  <label for="address">Landmark</label>
-                  <input type="textarea" formControlName="address"
-                   name="address" placeholder="User Address ..."
-                    class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['address'].errors }" />
-                    <div *ngIf="submitted && userForm.controls['address'].errors" class="invalid-feedback">
-                        <div *ngIf="userForm.controls['address'].errors.required">Landmark is required</div>
-                    </div>
-                </div>
-    
-                <div class="form-group">
-                  <label for="phn_no">Contact Number</label>
-                  <input type="number" formControlName="phn_no" name="phn_no"
-                   placeholder="User Mobile No ..." class='form-control input' [ngClass]="{ 'is-invalid': submitted && userForm.controls['phn_no'].errors }" />
-                   <div *ngIf="submitted && userForm.controls['phn_no'].errors" class="invalid-feedback">
-                      <div *ngIf="userForm.controls['phn_no'].errors.required">Contact Number is required</div>
-                  </div>
-                </div>
-    
-                
-              
-                <div class="form-group">
-                <input type="submit" name="save" value="Continue" class='btn-primary button' />
-              </div>   
-                         
-              </form>
-            </div>
-          </div>
-      </div> -->
-    
-  
+     
 
       <button type="submit" class="btn btn-lg btn-block btn-secondary" (click)="rentGriller(success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)">Continue</button>
                

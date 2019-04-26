@@ -10,6 +10,7 @@ import { Console } from '@angular/core/src/console';
 export class GrillerService {
 
   private _url: string = 'http://localhost:8080/grillAnywhere/griller';
+  private grill;
   constructor(private http: HttpClient) { }
 
   saveGriller(formData: FormData): Observable<any> {
@@ -28,6 +29,7 @@ export class GrillerService {
 
     })
   }
+
 
   fetchOwner(user, callback) {
    // console.log(user.grillName);
@@ -134,9 +136,30 @@ export class GrillerService {
 
     })
   }
+  getUserByFlag(callback) {
+    this.http.get(this._url+"/byflag").subscribe(data => {
+      callback(data)
+      console.log(data)
+    }, error => {
+
+      console.log('unable to process request')
+
+    })
+  }
 
   deleteUser(grillId, callback) {
     this.http.delete(this._url + "/" + grillId).subscribe(data => {
+      callback(data)
+      console.log(data)
+    }, error => {
+
+      console.log('unable to process request')
+
+    })
+  }
+
+  updateFlag(grillId, callback) {
+    this.http.put(this._url + "/returned/" + grillId,this.grill).subscribe(data => {
       callback(data)
       console.log(data)
     }, error => {

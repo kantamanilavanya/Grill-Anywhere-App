@@ -13,6 +13,16 @@ export class ManualComponent implements OnInit {
   private userForm:FormGroup
   private user:any
   private grillers:any[]
+  grillName;
+  location;
+  grillerType;
+  price;
+  grillerDescriptions;
+  grillImage
+  byType;
+  grillId
+  renter
+
   ngOnInit() {
     this.onLoad()
       }
@@ -39,4 +49,38 @@ export class ManualComponent implements OnInit {
      sessionStorage.clear();
     }
 
+    rentGriller(grillId,grillName,price,grillerDescriptions,grillerType,location,grillImage){
+      console.log("in rentGrill");
+      this.grillName=grillName;
+      this.location=location;
+      this.grillerType=grillerType;
+      this.grillerDescriptions=grillerDescriptions;
+      this.price=price;
+      this.grillImage=grillImage;
+      this.grillId=grillId;
+  
+      this.renter=sessionStorage.getItem('renter');
+      sessionStorage.setItem('grillId',this.grillId);
+      sessionStorage.setItem('grillerPrice',this.price);
+      console.log("in rentGriller id "+this.grillId);
+  
+      this.router.navigate(['./renter-dashboard/payment']);
+      
+    }
+    grillerInfo(grillId,grillName,price,grillerDescriptions,grillerType,location,grillImage){
+      console.log("into grillerInfo"+grillName+","+price+","+grillerDescriptions+","+grillerType+","+location);
+  
+      
+      this.grillName=grillName;
+      this.location=location;
+      this.grillerType=grillerType;
+      this.grillerDescriptions=grillerDescriptions;
+      this.price=price;
+      this.grillImage=grillImage
+      this.grillId=grillId
+  
+      
+    }
+  
+  
 }

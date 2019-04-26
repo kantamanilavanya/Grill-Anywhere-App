@@ -110,6 +110,31 @@ public class GrillerController {
 		String grillerFlag="A";
 		return new ResponseEntity<List<Griller>>(grillService.list(grillerFlag), HttpStatus.OK);
 	}
+	
+	//list rented griller
+	@CrossOrigin(origins = "*")
+	@GetMapping("/rentedGriller")
+	public HttpEntity<List<Griller>> listRentedGrillers(HttpSession session) {
+
+		String grillerFlag="R";
+		return new ResponseEntity<List<Griller>>(grillService.listRented(grillerFlag), HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@PutMapping("/returned/{grillId}")
+	public ResponseEntity<Griller> returnGriller(@PathVariable int grillId, HttpSession session) {
+
+		String grillerFlag="A";
+		return new ResponseEntity<Griller>((Griller)grillService.updateFlag(grillId,grillerFlag), HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping(value="byflag")
+	public HttpEntity<List<Griller>> listGrillersType(HttpSession session) {
+
+		String grillerFlag="R";
+		return new ResponseEntity<List<Griller>>(grillService.list(grillerFlag), HttpStatus.OK);
+	}
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("byID/{id}")
@@ -138,6 +163,25 @@ public class GrillerController {
 //		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
 	}
 	
+//	@CrossOrigin(origins = "*")
+//	@PutMapping("changeFlag/{id}")
+//	public HttpEntity<? extends Object> updateFlag(
+//			@ModelAttribute Griller griller, @PathVariable int id,
+//			 HttpSession session, BindingResult bindingResult) throws ValidationException {
+//
+//		//validator.validate(griller, bindingResult);
+//
+////		if (bindingResult.hasErrors()) {
+////			throw new ValidationException(bindingResult);
+////		}
+//
+//		
+//		grillService.updateFlag(id);
+//
+//		return new ResponseEntity<String>("{\"Status\":\"Success\"}", HttpStatus.OK);
+////		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+//	}
+//	
 
 	
 		@CrossOrigin(origins = "*")

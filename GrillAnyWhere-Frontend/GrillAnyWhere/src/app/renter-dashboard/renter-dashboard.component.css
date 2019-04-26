@@ -11,7 +11,10 @@
     padding-bottom: 0px;
     padding-top: 0px;
 }
-
+.image{
+  width:1700px;
+  height:600px;
+}
 .icon-size
 {
     font-size: 87px;

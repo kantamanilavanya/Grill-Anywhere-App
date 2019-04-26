@@ -45,4 +45,12 @@ public class GrillerRepositoryImpl implements GrillerRepositoryCustom{
 				createQuery("select e.grillName,e.grillerType,e.grillerDescriptions,e.price,e.location,p.renter from Griller e INNER JOIN Purchase p on p.grillId=e.grillId where p.renter like '"+renter+"' ").
 					getResultList();
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public int updateFlag(int id) {
+		String flag="A";
+		return this.entityManager.
+				createQuery("update griller g set g.grillerFlag='"+flag+"' where g.grillId like '"+id+"'").executeUpdate();
+					
+	}
 }
