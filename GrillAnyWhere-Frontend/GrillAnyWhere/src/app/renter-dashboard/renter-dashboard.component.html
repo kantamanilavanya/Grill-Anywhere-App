@@ -161,16 +161,17 @@
                 <ul class="social">
                   <li><a data-tip="Quick View"
                       (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
-                      href="#grillerInfoModal" data-toggle="tab"><i class="fa fa-eye"></i></a></li>
+                      href="#grillerInfoModal" data-toggle="collapse"><i class="fa fa-eye"></i></a></li>
 
                   <li></li>
                 </ul>
                 <a class="add-to-cart" (click)="grillerInfo(success.grillId,success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location,success.grillImage)"
-                href="#grillerInfoModal" data-toggle="tab">Rent Now</a>
+                href="#grillerInfoModal" data-toggle="collapse">Rent Now</a>
               </div>
-              <div class="product-content">
-                <h3 class="title"><a href="#">{{success.grillName}}</a></h3>
-                <span class="price">Rent (per hr.) : {{success.price}}</span>
+              <div class="product-content text-success">
+                <h3 class="title"><a href="#" class="text-warning" >{{success.grillName}}</a></h3>
+                <div><span class="price text-primary">Rent (per hr.) : {{success.price}}</span></div>
+                <span >{{success.location}}</span>
               </div>
             </div>
           </div>
@@ -205,7 +206,7 @@
     </div> -->
 
     <!-- Modal -->
-    <div id="grillerInfoModal" class="container tab-pane">
+    <div id="grillerInfoModal" class="collapse">
       <br/><br/>
       
       <div class="row">
