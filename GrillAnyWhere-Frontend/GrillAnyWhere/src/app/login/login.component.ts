@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   user: User;
+  loginError;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -88,18 +89,30 @@ export class LoginComponent implements OnInit {
                 sessionStorage.setItem('renter',this.f.username.value);
               }
             },
-            err => console.log(err)
+            err => {
+              console.log("Wrong Credentials. Please Give Currect Credentials .");
+          this.loginError="Wrong Credentials. Please Give Currect Credentials . ";
+          this.alertService.error(err);
+          this.loading = false;
+            }//console.log(err)
           );
           //this.router.navigate(['/home']);
         },
         error => {
-          if (error === 'Wrong Credentials') {
-            this.alertService.error('Invalid Username / Password');
-          } else {
-            this.alertService.error(error);
-          }
+          console.log("Wrong Credentials. Please Give Currect Credentials .");
+          this.loginError="Wrong Credentials. Please Give Currect Credentials . ";
+          this.alertService.error(error);
           this.loading = false;
-          console.log(error);
+
+          // if (error === 'Wrong Credentials') {
+          //   console.log("Wrong Credentials. Please Give Currect Credentials .")
+          //   this.loginError="Wrong Credentials. Please Give Currect Credentials ."
+          //  // this.alertService.error('Invalid Username / Password');
+          // } else {
+          //   this.alertService.error(error);
+          // }
+          // this.loading = false;
+          // console.log(error);
         }
       );
   }

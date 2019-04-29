@@ -23,30 +23,30 @@ public class User extends DateAudit {
     private long id;
 
     @NotBlank
-    @Size(max = 40)
+   // @Size(max = 40)
     private String firstname;
     
-    @Size(max = 40)
+   // @Size(max = 40)
     private String lastname;
     
     @NotBlank
-    @Size(max = 50)
+   // @Size(max = 50)
     private String username;
 
     @NaturalId
     @NotBlank
-    @Size(max = 50)
+   // @Size(max = 50)
     @Email
     private String email;
 
     @NotBlank
-    @Size(max = 100)
+   // @Size(max = 100)
     private String password;
     
-    @Size(max = 15)
+   // @Size(max = 15)
     private String phone;
     
-    @Size(max = 10)
+   // @Size(max = 10)
     private String gender;
     
     @ManyToMany(fetch = FetchType.LAZY)
@@ -57,7 +57,7 @@ public class User extends DateAudit {
     
     private int credits;
     
-    @Size(max = 10)
+    //@Size(max = 10)
     private String type;
     
 

@@ -19,7 +19,9 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
-
+    phoneno;
+    registerError;
+    
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
@@ -42,12 +44,12 @@ export class RegisterComponent implements OnInit {
         };
 
         this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            email: ['', Validators.required],
+            firstName: ['', [Validators.required, Validators.minLength(3)]],
+            lastName: ['', [Validators.required, Validators.minLength(2)]],
+            email: ['', [Validators.required,Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
             confirmPassword: [''],
-            phone: ['', Validators.required],
+            phone: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
             gender: ['', Validators.required],
             type: ['', Validators.required]
         });
@@ -57,7 +59,7 @@ export class RegisterComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
-        console.log("Registerrr");
+        console.log("Register");
         this.submitted = true;
 
         // stop here if form is invalid
@@ -66,6 +68,8 @@ export class RegisterComponent implements OnInit {
         }
 
         // building JSON for form data
+        
+
         const formData = {
 
             firstname: this.f.firstName.value,
@@ -78,6 +82,7 @@ export class RegisterComponent implements OnInit {
             type: this.f.type.value
         };
 
+        
         this.loading = true;
         this.userService.register(formData)
             .pipe(first())
@@ -88,22 +93,12 @@ export class RegisterComponent implements OnInit {
                     this.router.navigate(['/login']);
                 },
                 error => {
+                    console.log("User already exist");
+                    this.registerError="User Already Exist ";
                     this.alertService.error(error);
                     this.loading = false;
                 });
 
-        // this.eul.createEndUser(this.registerForm.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             this.alertService.success('Registration successful', true);
-        //             this.router.navigate(['/login']);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
-        //     this.eul.findId(this.registerForm.value).subscribe(data => this.euid.uId = data);
-        //     this.router.navigate(['/user-dashboard']);
+            
     }
 }
