@@ -7,6 +7,8 @@
           <div class="card-title text-center mb-5">
             <h4>SignUp</h4>
           </div>
+          <span class="text-center text-danger">{{registerError}}</span>
+          <br/>
           <form [formGroup]="registerForm" (submit)="onSubmit()">
           <div class="card-text mb-5">
             <div class="form-group row">
@@ -17,10 +19,11 @@
                     <div class="input-group-text"><i class="fas fa-user"></i></div>
                   </div>
                   <input type='text' formControlName="firstName" class='form-control'
-                    [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" required placeholder="First Name"/>
+                    [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="First Name"/>
                 </div>
                 <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                   <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                  <div *ngIf="f.firstName.errors.minlength">First Name must be atleast 3 characters</div>
                 </div>
               </div>
 
@@ -33,6 +36,7 @@
                   [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Last Name">
                 <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                   <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                  <div *ngIf="f.lastName.errors.minlength">Last mane must be at least 2 characters</div>
                 </div>
                   </div>
                 </div>
@@ -47,7 +51,9 @@
                   [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required placeholder="Email" />
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                   <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Enter currect Email ID</div>
                 </div>
+               
                 </div>
             </div>
 
@@ -97,9 +103,11 @@
                           <div class="input-group-text"><em class="fas fa-address-book"></em></div>
                           </div>
                 <input type='number' class='form-control' formControlName="phone"
-                  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" placeholder="Phone" />
+                  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" placeholder="Phone" pattern=".{10,11}" title="Phone min 10 and max 11"/>
                 <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-                  <div *ngIf="f.phone.errors.required">Phone is required</div>
+                  <div *ngIf="f.phone.errors.required">Phone Number is required</div>
+                  <div *ngIf="f.phone.errors.minlength">Give Currect Phone Number</div>
+                  <div *ngIf="f.phone.errors.maxlength">Give Currect Phone Number</div>
                 </div>
               </div>
               </div>
