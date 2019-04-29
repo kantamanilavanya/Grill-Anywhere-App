@@ -130,8 +130,8 @@
               <select class='form-control' formControlName="type"
                 [ngClass]="{ 'is-invalid': submitted && f.type.errors }"><br>
                 <option value=''>Select Role</option>
-                <option value='buser'>Business User</option>
-                <option value='nuser'>Normal User</option>
+                <option value='buser'>Normal User</option>
+                <option value='nuser'>Business User</option>
               </select>
               <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
                 <div *ngIf="f.type.errors.required">Email is required</div>
@@ -147,7 +147,8 @@
             </div>
             <div class="row">
                 <div class="col">
-                  <input type="reset" class='btn btn-outline-warning float-right' value='Reset' />
+                  <input type="reset" class='btn btn-warning float-right' value='Reset' />
+                  <a [routerLink]= "['/login']" href="#">Back to Login</a>
                 </div>
               </div>
             </div>

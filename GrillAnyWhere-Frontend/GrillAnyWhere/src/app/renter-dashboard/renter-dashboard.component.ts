@@ -4,6 +4,7 @@ import { ActivatedRoute,Router, RouterLink } from "@angular/router";
 import * as $ from 'jquery'
 import { GrillerService } from "../griller.service";
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from '../_services/authentication.service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class RenterDashboardComponent implements OnInit {
   private purchase:any
   renter
 
-  constructor(private route:ActivatedRoute,private service:GrillerService,private router: Router,private httpClient:HttpClient) { }
+  constructor(private route:ActivatedRoute,private service:GrillerService,private router: Router,
+    private httpClient:HttpClient,private authenticationService:AuthenticationService) { }
 
   ngOnInit() {
     history.pushState(null, null, location.href);
@@ -98,6 +100,10 @@ export class RenterDashboardComponent implements OnInit {
   back(){
     this.router.navigate(['./renter-dashboard']);
   }
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['./home']);
+  }
 
   dropDownFilter(event){
     console.log("in dropDown: "+event);
@@ -158,12 +164,7 @@ searchBarFilter(event){
     }
   }
 
-  logout(){
-    sessionStorage.removeItem('rentername');
-    this.router.navigate(['/'])
-   // window.location.reload();
-   sessionStorage.clear();
-  }
+ 
 
   toggleAllGriller(){
     document.location.reload();

@@ -19,12 +19,7 @@
 
 <body>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-      <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)">
-          <option>Choose City</option>
-          <option value="Bangalore">Bangalore</option>
-          <option value="Chennai">Chennai</option>
-          <option value="Mumbai">Mumbai</option>
-        </select>
+      
     <div class="container">
       <a href="index.html" class="navbar-brand">GRILL ANYWHERE</a>
       
@@ -35,25 +30,27 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a href="index.html" class="nav-link">Home</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a href="about.html" class="nav-link">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a href="services.html" class="nav-link">Services</a>
-          </li> -->
+          
+         
+         
           <li class="searchbar">
-            <input type="text" #search id="searchbar-input" (keyup)="searchBarFilter(search.value)">
+            <input type="text" #search id="searchbar-input" (keyup)="searchBarFilter(search.value)" >
             <i class="fa fa-search" id="searchbar-icon" aria-hidden="true"></i>
             <i class="fa fa-times" id="searchbar-cross" aria-hidden="true"></i>
+          </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <li>
+              <select #dropDown id="dropDown-input" (change)="dropDownFilter(dropDown.value)">
+                  <option>Choose City</option>
+                  <option value="Bangalore">Bangalore</option>
+                  <option value="Chennai">Chennai</option>
+                  <option value="Mumbai">Mumbai</option>
+                </select>
           </li>
           <li>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </li>
-          <button type="button" class="btn btn-info" routerLink="/login" >
-           Login/Register
+          <button type="button" class="btn btn-info btn-lg" routerLink="/login" style="margin-right:-5px;">
+          Login/Register
           </button>
           <li>
             &nbsp;&nbsp;
@@ -75,9 +72,7 @@
         <div class="carousel-item carousel-image-1 active">
           <div class="container">
             <div class="carousel-caption d-none d-sm-block mb-5">
-              <h1 class="display-3">Heading One</h1>
-              <p class="lead"></p>
-              <a href="#" class="btn btn-primary btn-lg">Learn More</a>
+            
             </div>
           </div>
         </div>
@@ -85,9 +80,7 @@
         <div class="carousel-item carousel-image-2">
           <div class="container">
             <div class="carousel-caption d-none d-sm-block mb-5">
-              <h1 class="display-3">Heading Two</h1>
-              <p class="lead"></p>
-              <a href="#" class="btn btn-primary btn-lg">Learn More</a>
+              
             </div>
           </div>
         </div>
@@ -95,9 +88,7 @@
         <div class="carousel-item carousel-image-3">
           <div class="container">
             <div class="carousel-caption d-none d-sm-block text-right mb-5">
-              <h1 class="display-3">Heading Three</h1>
-              <p class="lead"></p>
-              <a href="#" class="btn btn-success btn-lg">Learn More</a>
+            
             </div>
           </div>
         </div>
@@ -119,18 +110,18 @@
       <div class="row">
         <div class="col-md-4 mb-4 text-center">
           <i class="fas fa-cog fa-3x mb-2"></i>
-          <h3>Explore on Grilers</h3>
-          <p>Explores on our verious types of griller</p>
+          <h3>Explore on Grillers</h3>
+          <p>Explore on  various types of grillers</p>
         </div>
         <div class="col-md-4 mb-4 text-center">
           <i class="fas fa-cloud fa-3x mb-2"></i>
-          <h3>Sales Your Griler</h3>
-          <p>Sales your griller for some time periods</p>
+          <h3> Grillers For Hire</h3>
+          <p>Hire  griller for some time period</p>
         </div>
         <div class="col-md-4 mb-4 text-center">
           <i class="fas fa-cart-plus fa-3x mb-2"></i>
           <h3>Making Order</h3>
-          <p>Choose your griller to rent</p>
+          <p>Choose your griller to hire</p>
         </div>
       </div>
     </div>
@@ -143,8 +134,7 @@
         <div class="col">
           <div class="container pt-5">
             <h1>Are You Ready To Rent Griller?</h1>
-            <p class="d-none d-md-block">nnbbcv ndndjnjnds sndhjnsjd whbhdc wjhbcd dwhb wjhbdch dwhs bc
-              consequatur soluta.</p>
+            
           </div>
         </div>
       </div>
@@ -191,35 +181,8 @@
   
 
 
-  <!-- <section id="gallery" class="py-5">
-    <div class="container">
-      <h1 class="text-center">Photo Gallery</h1>
-      <p class="text-center">Check out our Grillers</p>
-      <div id="menu" class="card-columns" >
-          <ul>
-            <div class="card-columns ">
-            <li *ngFor="let success of grillers">
-                <div class="column">
-                    <div class="card" style="width: 18rem;height:28rem">
-                        <div class="card-body">
-                      <img class="card-img-top" src="assets/images/griller10.jpg" alt="Card image cap">
-                      
-                        <hr>
-                        <p class="card-text">{{success.grillName}}</p>
-                        <hr>
-                        <p>Starts From {{success.price}}$</p>
-                        <hr>
-                        <a href="#" (click)="grillerInfo(success.grillName,success.price,success.grillerDescriptions,success.grillerType,success.location)"  data-toggle="modal" data-target="#grillerInfoModal">More Info</a>
-                      </div>
-                    </div>
-                  </div>
-            </li>
-          </div>
-            </ul>
-          </div>
-      
-    </div>
-  </section> -->
+  
+  
 
   <!-- Modal -->
 <div id="grillerInfoModal" class="modal" role="dialog" >

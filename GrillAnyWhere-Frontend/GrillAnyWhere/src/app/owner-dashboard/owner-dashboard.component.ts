@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from "@angula
 import { GrillerService } from "../griller.service";
 import * as $ from 'jquery'
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from '../_services/authentication.service';
 
 
 
@@ -27,7 +28,8 @@ export class OwnerDashboardComponent implements OnInit {
   private delConfirm:boolean;
   owner;
 
-  constructor(private builder:FormBuilder,private service:GrillerService,private router : Router,private httpClient:HttpClient) { 
+  constructor(private builder:FormBuilder,private service:GrillerService,private router : Router,
+    private httpClient:HttpClient,private authenticationService:AuthenticationService) { 
     this.buildForm()
   }
 
@@ -103,27 +105,29 @@ export class OwnerDashboardComponent implements OnInit {
   }
 
 
-  update(id){
-   const formData = new FormData();
-   formData.append('file', this.userForm.get('grillImage').value);
-   formData.append('grillName',this.userForm.get('grillName').value)
-   formData.append('grillerType',this.userForm.get('grillerType').value)
-   formData.append('price',this.userForm.get('price').value)
-   formData.append('location',this.userForm.get('location').value)
-    formData.append('grillerDescriptions',this.userForm.get('grillerDescriptions').value)
-
-   this.httpClient.put<any>('http://localhost:8080//grillAnywhere/griller/'+id, formData).subscribe(
-     (res) => console.log(res),
-     (err) => console.log(err),
-     
-
-          
-   );
-   this.onloadFun()
-   
-   
-  
+  updateGriller(id){
+    console.log("hello"+id)
+    const formData = new FormData();
+    formData.append('file', this.userForm.get('grillImage').value);
+    formData.append('grillName',this.userForm.get('grillName').value)
+    formData.append('grillerType',this.userForm.get('grillerType').value)
+    formData.append('price',this.userForm.get('price').value)
+    formData.append('location',this.userForm.get('location').value)
+     formData.append('grillerDescriptions',this.userForm.get('grillerDescriptions').value)
+     formData.append('owner',this.owner)
+ 
+    this.httpClient.put<any>('http://localhost:8080/grillAnywhere/griller/'+id, formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+      
+    );
+    
+    console.log("dfsfsfs");
+   window.location.reload()
+    
   }
+
+
 
   storeId(grillId){
    this.service.getGrillById(grillId,data=>{
@@ -151,6 +155,10 @@ export class OwnerDashboardComponent implements OnInit {
       window.location.reload();
      
   })
+  }
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['./home'])
   }
 
   onloadFun(){
@@ -186,9 +194,6 @@ rent(){
       }
   }
   
-  logout(){
-    this.router.navigate(['/']);
-   sessionStorage.clear();
-  }
+ 
   
 }

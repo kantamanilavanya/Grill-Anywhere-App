@@ -15,7 +15,11 @@ body {
   
   #dropDown-input{
     border-radius: 2px;
-    background-color: darkgoldenrod;
+    width:150px;
+    height: 40px;
+    border-radius: 8px;
+    border-color: #3498db;
+    /* background-color:rgb(10, 190, 245) */
   }
   .navbar .nav-link {
     font-size: 14px;
@@ -132,20 +136,20 @@ body {
       color: #606060;
       display: none;
       border-radius: 5px;
-      background-color: goldenrod;
+      /* background-color:rgb(10, 190, 245); */
     }
     
     .fa-times {
       display: none;
       font-size: 40px;
       cursor: pointer;
-      color:red;
+      color:rgb(10, 190, 245);
     }
     
     .fa-search {
       font-size: 40px;
       cursor: pointer;
-      color:goldenrod;
+      color:blue;
     }
 
     .grillerList{
